@@ -1,0 +1,142 @@
+{
+  "experiment": "build-identity-stats",
+  "tool": "C:\\WorkSpace\\Claw\\scratch\\lead\\nsp-branches\\wt2-peid\\build\\hook-validation\\nsp-hook-validate.exe",
+  "labDir": "C:\\WorkSpace\\Claw\\scratch\\lead\\nsp-branches\\lab",
+  "builds": [
+    {
+      "label": "26100.9444",
+      "file": "audiodg-build-26100.9444.exe",
+      "note": "reference (pinned by NSP)",
+      "sha256": "3dd24fe6faf0b56f99d5b00f24687b5f3b3e76e15b219e23f0963114a0dce9a5",
+      "sizeBytes": 885792,
+      "fileVersion": "10.0.26100.9444",
+      "timeDateStamp": 2523879071,
+      "sizeOfImage": 880640,
+      "checksum": 931598,
+      "buildId": "966F569F-000D7000-000E370E-v10.0.26100.9444",
+      "magic": 523,
+      "imageBase": 5368709120
+    },
+    {
+      "label": "26100.9711",
+      "file": "audiodg-build-26100.9711.exe",
+      "note": "other 26100 build",
+      "sha256": "4b5981cf6bdfac2f7be0c3314fb1eb12f6075083f11316c6cc15c63b697aeae7",
+      "sizeBytes": 903640,
+      "fileVersion": "10.0.26100.9711",
+      "timeDateStamp": 1763197181,
+      "sizeOfImage": 880640,
+      "checksum": 968663,
+      "buildId": "691840FD-000D7000-000EC7D7-v10.0.26100.9711",
+      "magic": 523,
+      "imageBase": 5368709120
+    },
+    {
+      "label": "26100.9974",
+      "file": "audiodg-build-26100.9974.exe",
+      "note": "newer 26100 build",
+      "sha256": "017628fc0ace806163950bb3019709ca3820531d7f19c1103429e09b4c54f6ca",
+      "sizeBytes": 899472,
+      "fileVersion": "10.0.26100.9974",
+      "timeDateStamp": 1943520100,
+      "sizeOfImage": 876544,
+      "checksum": 943642,
+      "buildId": "73D7C364-000D6000-000E661A-v10.0.26100.9974",
+      "magic": 523,
+      "imageBase": 5368709120
+    },
+    {
+      "label": "26100.9949",
+      "file": "audiodg-system-26100.9949.exe",
+      "note": "current system copy (servicing package 9949)",
+      "sha256": "017628fc0ace806163950bb3019709ca3820531d7f19c1103429e09b4c54f6ca",
+      "sizeBytes": 899472,
+      "fileVersion": "10.0.26100.9974",
+      "timeDateStamp": 1943520100,
+      "sizeOfImage": 876544,
+      "checksum": 943642,
+      "buildId": "73D7C364-000D6000-000E661A-v10.0.26100.9974",
+      "magic": 523,
+      "imageBase": 5368709120
+    }
+  ],
+  "mutants": [
+    {
+      "mutant": "A-mut-fn",
+      "file": "audiodg-A-mut-fn.exe",
+      "base": "audiodg-build-26100.9444.exe",
+      "note": "reference + 1 byte inside target fn",
+      "sha256": "848f61acc8a4ea29324dc7fd428604da6cb07aadf547d09422a0cc94a80baf45",
+      "baseSha256": "3dd24fe6faf0b56f99d5b00f24687b5f3b3e76e15b219e23f0963114a0dce9a5",
+      "buildId": "966F569F-000D7000-000E370E-v10.0.26100.9444",
+      "baseBuildId": "966F569F-000D7000-000E370E-v10.0.26100.9444",
+      "sha256Differs": true,
+      "buildIdSame": true,
+      "fileVersion": "10.0.26100.9444",
+      "timeDateStamp": 2523879071,
+      "sizeOfImage": 880640,
+      "checksum": 931598
+    },
+    {
+      "mutant": "A-mut-else",
+      "file": "audiodg-A-mut-else.exe",
+      "base": "audiodg-build-26100.9444.exe",
+      "note": "reference + 1 byte outside target fn",
+      "sha256": "669b899de76235a6d000029d40403d15e677e5dca20fddbf886378d0e0c88f1d",
+      "baseSha256": "3dd24fe6faf0b56f99d5b00f24687b5f3b3e76e15b219e23f0963114a0dce9a5",
+      "buildId": "966F569F-000D7000-000E370E-v10.0.26100.9444",
+      "baseBuildId": "966F569F-000D7000-000E370E-v10.0.26100.9444",
+      "sha256Differs": true,
+      "buildIdSame": true,
+      "fileVersion": "10.0.26100.9444",
+      "timeDateStamp": 2523879071,
+      "sizeOfImage": 880640,
+      "checksum": 931598
+    },
+    {
+      "mutant": "D-mut-fn",
+      "file": "audiodg-D-mut-fn.exe",
+      "base": "audiodg-build-26100.9974.exe",
+      "note": "9974 + 1 byte inside target fn",
+      "sha256": "d0bccd8bfbb688dda9c14161319828c2d3a2456f2696e1376f3a83411bc13cbc",
+      "baseSha256": "017628fc0ace806163950bb3019709ca3820531d7f19c1103429e09b4c54f6ca",
+      "buildId": "73D7C364-000D6000-000E661A-v10.0.26100.9974",
+      "baseBuildId": "73D7C364-000D6000-000E661A-v10.0.26100.9974",
+      "sha256Differs": true,
+      "buildIdSame": true,
+      "fileVersion": "10.0.26100.9974",
+      "timeDateStamp": 1943520100,
+      "sizeOfImage": 876544,
+      "checksum": 943642
+    },
+    {
+      "mutant": "D-mut-else",
+      "file": "audiodg-D-mut-else.exe",
+      "base": "audiodg-build-26100.9974.exe",
+      "note": "9974 + 1 byte outside target fn",
+      "sha256": "4ea907813828f69707551a8444f5c5fbda9e75b30db87530b996c29fb7f0a865",
+      "baseSha256": "017628fc0ace806163950bb3019709ca3820531d7f19c1103429e09b4c54f6ca",
+      "buildId": "73D7C364-000D6000-000E661A-v10.0.26100.9974",
+      "baseBuildId": "73D7C364-000D6000-000E661A-v10.0.26100.9974",
+      "sha256Differs": true,
+      "buildIdSame": true,
+      "fileVersion": "10.0.26100.9974",
+      "timeDateStamp": 1943520100,
+      "sizeOfImage": 876544,
+      "checksum": 943642
+    }
+  ],
+  "summary": {
+    "builds": 4,
+    "distinctBuildIds": 3,
+    "distinctSha256": 3,
+    "mutants": 4,
+    "mutantsInvisibleToBuildId": 4,
+    "conclusions": [
+      "buildId (TimeDateStamp+SizeOfImage+CheckSum+fileVersion) separates the four build files into 3 identities and agrees with fileVersion.",
+      "audiodg-system-26100.9949.exe is byte-identical to audiodg-build-26100.9974.exe (same SHA-256), so the 9949 servicing copy is the 9974 binary.",
+      "All four mutants keep their base buildId while their SHA-256 changes: buildId has zero visibility into same-build byte changes.",
+      "Therefore pe-build-identity cannot answer 'was the target function changed?' - only 'is this a different build / is the whole file still signed?'."
+    ]
+  }
+}

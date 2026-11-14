@@ -1,0 +1,1111 @@
+{
+  "generatedAt": "2026-11-15T01:24:30+08:00",
+  "method": "pe-build-identity",
+  "description": "PE build identity (TimeDateStamp+SizeOfImage+CheckSum+fileVersion) plus Microsoft Authenticode gate",
+  "tool": "C:\\WorkSpace\\Claw\\scratch\\lead\\nsp-branches\\wt2-peid\\build\\hook-validation\\nsp-hook-validate.exe",
+  "labDir": "C:\\WorkSpace\\Claw\\scratch\\lead\\nsp-branches\\lab",
+  "reference": "C:\\WorkSpace\\Claw\\scratch\\lead\\nsp-branches\\lab\\audiodg-build-26100.9444.exe",
+  "policy": {
+    "default": "buildId match + valid Microsoft Authenticode => allow; invalid/unsigned signature => deny; valid signature + different build => warn; unverifiable => unknown",
+    "identityOnlyDiagnostic": "--ignore-signature: decision from buildId only (NOT a security policy)"
+  },
+  "summary": {
+    "cases": 8,
+    "strictPassed": 8,
+    "strictTotal": 8,
+    "identityOnlyPassed": 8,
+    "identityOnlyTotal": 8,
+    "strictDecisions": {
+      "allow": 1,
+      "warn": 3,
+      "deny": 4,
+      "unknown": 0
+    },
+    "identityOnlyDecisions": {
+      "allow": 3,
+      "warn": 5,
+      "deny": 0,
+      "unknown": 0
+    }
+  },
+  "knownLimitation": {
+    "buildIdBlindToSameBuildMutations": "A-mut-fn/A-mut-else carry byte-identical build identity to the reference; without the signature gate they are allowed (missed detection).",
+    "signatureGateIsWholeFileOnly": "With the signature gate the mutations are denied, but only because Authenticode covers the whole file; A-mut-else (target function untouched) is denied too, and no evidence about the target function body is produced.",
+    "sameBuildIdResignedBinary": "A re-signed same-build patched binary would pass and be allowed; not reproducible offline (no Microsoft signing key).",
+    "noLocation": "located=null, targetChanged=null by design."
+  },
+  "cases": [
+    {
+      "index": 1,
+      "case": "ref-self",
+      "candidate": "audiodg-build-26100.9444.exe",
+      "candidatePath": "C:\\WorkSpace\\Claw\\scratch\\lead\\nsp-branches\\lab\\audiodg-build-26100.9444.exe",
+      "expected": "allow",
+      "expectedIdentityOnly": "allow",
+      "note": "pinned build, unmodified",
+      "exitCode": 0,
+      "wallMs": 45.393,
+      "decision": "allow",
+      "pass": true,
+      "contractProblems": [],
+      "buildIdMatch": true,
+      "build": {
+        "fileVersion": "10.0.26100.9444",
+        "timeDateStamp": 2523879071,
+        "sizeOfImage": 880640,
+        "checksum": 931598,
+        "buildId": "966F569F-000D7000-000E370E-v10.0.26100.9444"
+      },
+      "referenceBuild": {
+        "fileVersion": "10.0.26100.9444",
+        "timeDateStamp": 2523879071,
+        "sizeOfImage": 880640,
+        "checksum": 931598,
+        "buildId": "966F569F-000D7000-000E370E-v10.0.26100.9444"
+      },
+      "signature": {
+        "candidateStatus": "valid",
+        "candidateSignerSubject": "Microsoft Windows",
+        "candidateMicrosoftSigned": true,
+        "gateEnabled": true
+      },
+      "located": null,
+      "targetChanged": null,
+      "timingMs": 33.671,
+      "checksOk": 7,
+      "checksTotal": 8,
+      "rationale": "build identity identical and Microsoft signature valid. NOTE: this proves build identity + whole-file signature only, not the target function body.",
+      "raw": {
+        "method": "pe-build-identity",
+        "reference": "C:\\WorkSpace\\Claw\\scratch\\lead\\nsp-branches\\lab\\audiodg-build-26100.9444.exe",
+        "candidate": "C:\\WorkSpace\\Claw\\scratch\\lead\\nsp-branches\\lab\\audiodg-build-26100.9444.exe",
+        "build": {
+          "fileVersion": "10.0.26100.9444",
+          "timeDateStamp": 2523879071,
+          "sizeOfImage": 880640,
+          "checksum": 931598,
+          "magic": 523,
+          "machine": 34404,
+          "imageBase": 5368709120,
+          "buildId": "966F569F-000D7000-000E370E-v10.0.26100.9444"
+        },
+        "referenceBuild": {
+          "fileVersion": "10.0.26100.9444",
+          "timeDateStamp": 2523879071,
+          "sizeOfImage": 880640,
+          "checksum": 931598,
+          "magic": 523,
+          "machine": 34404,
+          "imageBase": 5368709120,
+          "buildId": "966F569F-000D7000-000E370E-v10.0.26100.9444"
+        },
+        "buildIdMatch": true,
+        "located": null,
+        "decision": "allow",
+        "targetChanged": null,
+        "signature": {
+          "candidateStatus": "valid",
+          "candidateWinVerifyTrust": "0x00000000",
+          "candidateSignerSubject": "Microsoft Windows",
+          "candidateMicrosoftSigned": true,
+          "referenceStatus": "valid",
+          "referenceWinVerifyTrust": "0x00000000",
+          "referenceSignerSubject": "Microsoft Windows",
+          "referenceMicrosoftSigned": true,
+          "gateEnabled": true
+        },
+        "checks": [
+          {
+            "name": "pe_parse",
+            "ok": true,
+            "detail": "reference=parsed candidate=parsed"
+          },
+          {
+            "name": "pe_headers",
+            "ok": true,
+            "detail": "ref magic=0x20B machine=0x8664 imageBase=0x140000000; cand magic=0x20B machine=0x8664 imageBase=0x140000000"
+          },
+          {
+            "name": "file_version",
+            "ok": true,
+            "detail": "10.0.26100.9444"
+          },
+          {
+            "name": "build_id",
+            "ok": true,
+            "detail": "reference=966F569F-000D7000-000E370E-v10.0.26100.9444 candidate=966F569F-000D7000-000E370E-v10.0.26100.9444 (identical build identity)"
+          },
+          {
+            "name": "authenticode",
+            "ok": true,
+            "detail": "WinVerifyTrust=0x00000000 status=valid"
+          },
+          {
+            "name": "microsoft_signer",
+            "ok": true,
+            "detail": "subject=Microsoft Windows; microsoftSigned=true"
+          },
+          {
+            "name": "signature_gate",
+            "ok": true,
+            "detail": "enabled (default policy)"
+          },
+          {
+            "name": "function_body",
+            "ok": false,
+            "detail": "NOT PROVEN: pe-build-identity performs no function-level analysis; located=null, targetChanged=unknown. A same-buildId candidate could still contain a patched target function if it were re-signed (not reproducible offline)."
+          }
+        ],
+        "rationale": "build identity identical and Microsoft signature valid. NOTE: this proves build identity + whole-file signature only, not the target function body.",
+        "timingMs": 33.671
+      },
+      "identityOnly": {
+        "exitCode": 0,
+        "wallMs": 42.05,
+        "decision": "allow",
+        "buildIdMatch": true,
+        "pass": true,
+        "gateEnabled": false,
+        "rationale": "[diagnostic/buildId-only] build identity identical (966F569F-000D7000-000E370E-v10.0.26100.9444); signature check disabled. This is exactly the blind spot: same-build byte changes are invisible."
+      }
+    },
+    {
+      "index": 2,
+      "case": "A-mut-else",
+      "candidate": "audiodg-A-mut-else.exe",
+      "candidatePath": "C:\\WorkSpace\\Claw\\scratch\\lead\\nsp-branches\\lab\\audiodg-A-mut-else.exe",
+      "expected": "deny",
+      "expectedIdentityOnly": "allow",
+      "note": "1 byte changed outside target fn; buildId identical",
+      "exitCode": 0,
+      "wallMs": 40.842,
+      "decision": "deny",
+      "pass": true,
+      "contractProblems": [],
+      "buildIdMatch": true,
+      "build": {
+        "fileVersion": "10.0.26100.9444",
+        "timeDateStamp": 2523879071,
+        "sizeOfImage": 880640,
+        "checksum": 931598,
+        "buildId": "966F569F-000D7000-000E370E-v10.0.26100.9444"
+      },
+      "referenceBuild": {
+        "fileVersion": "10.0.26100.9444",
+        "timeDateStamp": 2523879071,
+        "sizeOfImage": 880640,
+        "checksum": 931598,
+        "buildId": "966F569F-000D7000-000E370E-v10.0.26100.9444"
+      },
+      "signature": {
+        "candidateStatus": "invalid",
+        "candidateSignerSubject": "Microsoft Windows",
+        "candidateMicrosoftSigned": null,
+        "gateEnabled": true
+      },
+      "located": null,
+      "targetChanged": null,
+      "timingMs": 30.69,
+      "checksOk": 5,
+      "checksTotal": 8,
+      "rationale": "candidate Authenticode is invalid (WinVerifyTrust=0x80096010): the file was modified after signing. build identity matches the reference.",
+      "raw": {
+        "method": "pe-build-identity",
+        "reference": "C:\\WorkSpace\\Claw\\scratch\\lead\\nsp-branches\\lab\\audiodg-build-26100.9444.exe",
+        "candidate": "C:\\WorkSpace\\Claw\\scratch\\lead\\nsp-branches\\lab\\audiodg-A-mut-else.exe",
+        "build": {
+          "fileVersion": "10.0.26100.9444",
+          "timeDateStamp": 2523879071,
+          "sizeOfImage": 880640,
+          "checksum": 931598,
+          "magic": 523,
+          "machine": 34404,
+          "imageBase": 5368709120,
+          "buildId": "966F569F-000D7000-000E370E-v10.0.26100.9444"
+        },
+        "referenceBuild": {
+          "fileVersion": "10.0.26100.9444",
+          "timeDateStamp": 2523879071,
+          "sizeOfImage": 880640,
+          "checksum": 931598,
+          "magic": 523,
+          "machine": 34404,
+          "imageBase": 5368709120,
+          "buildId": "966F569F-000D7000-000E370E-v10.0.26100.9444"
+        },
+        "buildIdMatch": true,
+        "located": null,
+        "decision": "deny",
+        "targetChanged": null,
+        "signature": {
+          "candidateStatus": "invalid",
+          "candidateWinVerifyTrust": "0x80096010",
+          "candidateSignerSubject": "Microsoft Windows",
+          "candidateMicrosoftSigned": null,
+          "referenceStatus": "valid",
+          "referenceWinVerifyTrust": "0x00000000",
+          "referenceSignerSubject": "Microsoft Windows",
+          "referenceMicrosoftSigned": true,
+          "gateEnabled": true
+        },
+        "checks": [
+          {
+            "name": "pe_parse",
+            "ok": true,
+            "detail": "reference=parsed candidate=parsed"
+          },
+          {
+            "name": "pe_headers",
+            "ok": true,
+            "detail": "ref magic=0x20B machine=0x8664 imageBase=0x140000000; cand magic=0x20B machine=0x8664 imageBase=0x140000000"
+          },
+          {
+            "name": "file_version",
+            "ok": true,
+            "detail": "10.0.26100.9444"
+          },
+          {
+            "name": "build_id",
+            "ok": true,
+            "detail": "reference=966F569F-000D7000-000E370E-v10.0.26100.9444 candidate=966F569F-000D7000-000E370E-v10.0.26100.9444 (identical build identity)"
+          },
+          {
+            "name": "authenticode",
+            "ok": false,
+            "detail": "WinVerifyTrust=0x80096010 status=invalid"
+          },
+          {
+            "name": "microsoft_signer",
+            "ok": false,
+            "detail": "subject=Microsoft Windows; microsoftSigned=unknown"
+          },
+          {
+            "name": "signature_gate",
+            "ok": true,
+            "detail": "enabled (default policy)"
+          },
+          {
+            "name": "function_body",
+            "ok": false,
+            "detail": "NOT PROVEN: pe-build-identity performs no function-level analysis; located=null, targetChanged=unknown. A same-buildId candidate could still contain a patched target function if it were re-signed (not reproducible offline)."
+          }
+        ],
+        "rationale": "candidate Authenticode is invalid (WinVerifyTrust=0x80096010): the file was modified after signing. build identity matches the reference.",
+        "timingMs": 30.69
+      },
+      "identityOnly": {
+        "exitCode": 0,
+        "wallMs": 42.241,
+        "decision": "allow",
+        "buildIdMatch": true,
+        "pass": true,
+        "gateEnabled": false,
+        "rationale": "[diagnostic/buildId-only] build identity identical (966F569F-000D7000-000E370E-v10.0.26100.9444); signature check disabled. This is exactly the blind spot: same-build byte changes are invisible."
+      }
+    },
+    {
+      "index": 3,
+      "case": "A-mut-fn",
+      "candidate": "audiodg-A-mut-fn.exe",
+      "candidatePath": "C:\\WorkSpace\\Claw\\scratch\\lead\\nsp-branches\\lab\\audiodg-A-mut-fn.exe",
+      "expected": "deny",
+      "expectedIdentityOnly": "allow",
+      "note": "1 byte changed INSIDE target fn; buildId identical",
+      "exitCode": 0,
+      "wallMs": 43.494,
+      "decision": "deny",
+      "pass": true,
+      "contractProblems": [],
+      "buildIdMatch": true,
+      "build": {
+        "fileVersion": "10.0.26100.9444",
+        "timeDateStamp": 2523879071,
+        "sizeOfImage": 880640,
+        "checksum": 931598,
+        "buildId": "966F569F-000D7000-000E370E-v10.0.26100.9444"
+      },
+      "referenceBuild": {
+        "fileVersion": "10.0.26100.9444",
+        "timeDateStamp": 2523879071,
+        "sizeOfImage": 880640,
+        "checksum": 931598,
+        "buildId": "966F569F-000D7000-000E370E-v10.0.26100.9444"
+      },
+      "signature": {
+        "candidateStatus": "invalid",
+        "candidateSignerSubject": "Microsoft Windows",
+        "candidateMicrosoftSigned": null,
+        "gateEnabled": true
+      },
+      "located": null,
+      "targetChanged": null,
+      "timingMs": 33.127,
+      "checksOk": 5,
+      "checksTotal": 8,
+      "rationale": "candidate Authenticode is invalid (WinVerifyTrust=0x80096010): the file was modified after signing. build identity matches the reference.",
+      "raw": {
+        "method": "pe-build-identity",
+        "reference": "C:\\WorkSpace\\Claw\\scratch\\lead\\nsp-branches\\lab\\audiodg-build-26100.9444.exe",
+        "candidate": "C:\\WorkSpace\\Claw\\scratch\\lead\\nsp-branches\\lab\\audiodg-A-mut-fn.exe",
+        "build": {
+          "fileVersion": "10.0.26100.9444",
+          "timeDateStamp": 2523879071,
+          "sizeOfImage": 880640,
+          "checksum": 931598,
+          "magic": 523,
+          "machine": 34404,
+          "imageBase": 5368709120,
+          "buildId": "966F569F-000D7000-000E370E-v10.0.26100.9444"
+        },
+        "referenceBuild": {
+          "fileVersion": "10.0.26100.9444",
+          "timeDateStamp": 2523879071,
+          "sizeOfImage": 880640,
+          "checksum": 931598,
+          "magic": 523,
+          "machine": 34404,
+          "imageBase": 5368709120,
+          "buildId": "966F569F-000D7000-000E370E-v10.0.26100.9444"
+        },
+        "buildIdMatch": true,
+        "located": null,
+        "decision": "deny",
+        "targetChanged": null,
+        "signature": {
+          "candidateStatus": "invalid",
+          "candidateWinVerifyTrust": "0x80096010",
+          "candidateSignerSubject": "Microsoft Windows",
+          "candidateMicrosoftSigned": null,
+          "referenceStatus": "valid",
+          "referenceWinVerifyTrust": "0x00000000",
+          "referenceSignerSubject": "Microsoft Windows",
+          "referenceMicrosoftSigned": true,
+          "gateEnabled": true
+        },
+        "checks": [
+          {
+            "name": "pe_parse",
+            "ok": true,
+            "detail": "reference=parsed candidate=parsed"
+          },
+          {
+            "name": "pe_headers",
+            "ok": true,
+            "detail": "ref magic=0x20B machine=0x8664 imageBase=0x140000000; cand magic=0x20B machine=0x8664 imageBase=0x140000000"
+          },
+          {
+            "name": "file_version",
+            "ok": true,
+            "detail": "10.0.26100.9444"
+          },
+          {
+            "name": "build_id",
+            "ok": true,
+            "detail": "reference=966F569F-000D7000-000E370E-v10.0.26100.9444 candidate=966F569F-000D7000-000E370E-v10.0.26100.9444 (identical build identity)"
+          },
+          {
+            "name": "authenticode",
+            "ok": false,
+            "detail": "WinVerifyTrust=0x80096010 status=invalid"
+          },
+          {
+            "name": "microsoft_signer",
+            "ok": false,
+            "detail": "subject=Microsoft Windows; microsoftSigned=unknown"
+          },
+          {
+            "name": "signature_gate",
+            "ok": true,
+            "detail": "enabled (default policy)"
+          },
+          {
+            "name": "function_body",
+            "ok": false,
+            "detail": "NOT PROVEN: pe-build-identity performs no function-level analysis; located=null, targetChanged=unknown. A same-buildId candidate could still contain a patched target function if it were re-signed (not reproducible offline)."
+          }
+        ],
+        "rationale": "candidate Authenticode is invalid (WinVerifyTrust=0x80096010): the file was modified after signing. build identity matches the reference.",
+        "timingMs": 33.127
+      },
+      "identityOnly": {
+        "exitCode": 0,
+        "wallMs": 42.543,
+        "decision": "allow",
+        "buildIdMatch": true,
+        "pass": true,
+        "gateEnabled": false,
+        "rationale": "[diagnostic/buildId-only] build identity identical (966F569F-000D7000-000E370E-v10.0.26100.9444); signature check disabled. This is exactly the blind spot: same-build byte changes are invisible."
+      }
+    },
+    {
+      "index": 4,
+      "case": "build-9711",
+      "candidate": "audiodg-build-26100.9711.exe",
+      "candidatePath": "C:\\WorkSpace\\Claw\\scratch\\lead\\nsp-branches\\lab\\audiodg-build-26100.9711.exe",
+      "expected": "warn",
+      "expectedIdentityOnly": "warn",
+      "note": "newer Microsoft build, signature valid",
+      "exitCode": 0,
+      "wallMs": 44.81,
+      "decision": "warn",
+      "pass": true,
+      "contractProblems": [],
+      "buildIdMatch": false,
+      "build": {
+        "fileVersion": "10.0.26100.9711",
+        "timeDateStamp": 1763197181,
+        "sizeOfImage": 880640,
+        "checksum": 968663,
+        "buildId": "691840FD-000D7000-000EC7D7-v10.0.26100.9711"
+      },
+      "referenceBuild": {
+        "fileVersion": "10.0.26100.9444",
+        "timeDateStamp": 2523879071,
+        "sizeOfImage": 880640,
+        "checksum": 931598,
+        "buildId": "966F569F-000D7000-000E370E-v10.0.26100.9444"
+      },
+      "signature": {
+        "candidateStatus": "valid",
+        "candidateSignerSubject": "Microsoft Windows",
+        "candidateMicrosoftSigned": true,
+        "gateEnabled": true
+      },
+      "located": null,
+      "targetChanged": null,
+      "timingMs": 35.08,
+      "checksOk": 6,
+      "checksTotal": 8,
+      "rationale": "Microsoft signature valid but the build identity changed (ref 966F569F-000D7000-000E370E-v10.0.26100.9444 vs cand 691840FD-000D7000-000EC7D7-v10.0.26100.9711): build changed, function-level validation or manual confirmation required.",
+      "raw": {
+        "method": "pe-build-identity",
+        "reference": "C:\\WorkSpace\\Claw\\scratch\\lead\\nsp-branches\\lab\\audiodg-build-26100.9444.exe",
+        "candidate": "C:\\WorkSpace\\Claw\\scratch\\lead\\nsp-branches\\lab\\audiodg-build-26100.9711.exe",
+        "build": {
+          "fileVersion": "10.0.26100.9711",
+          "timeDateStamp": 1763197181,
+          "sizeOfImage": 880640,
+          "checksum": 968663,
+          "magic": 523,
+          "machine": 34404,
+          "imageBase": 5368709120,
+          "buildId": "691840FD-000D7000-000EC7D7-v10.0.26100.9711"
+        },
+        "referenceBuild": {
+          "fileVersion": "10.0.26100.9444",
+          "timeDateStamp": 2523879071,
+          "sizeOfImage": 880640,
+          "checksum": 931598,
+          "magic": 523,
+          "machine": 34404,
+          "imageBase": 5368709120,
+          "buildId": "966F569F-000D7000-000E370E-v10.0.26100.9444"
+        },
+        "buildIdMatch": false,
+        "located": null,
+        "decision": "warn",
+        "targetChanged": null,
+        "signature": {
+          "candidateStatus": "valid",
+          "candidateWinVerifyTrust": "0x00000000",
+          "candidateSignerSubject": "Microsoft Windows",
+          "candidateMicrosoftSigned": true,
+          "referenceStatus": "valid",
+          "referenceWinVerifyTrust": "0x00000000",
+          "referenceSignerSubject": "Microsoft Windows",
+          "referenceMicrosoftSigned": true,
+          "gateEnabled": true
+        },
+        "checks": [
+          {
+            "name": "pe_parse",
+            "ok": true,
+            "detail": "reference=parsed candidate=parsed"
+          },
+          {
+            "name": "pe_headers",
+            "ok": true,
+            "detail": "ref magic=0x20B machine=0x8664 imageBase=0x140000000; cand magic=0x20B machine=0x8664 imageBase=0x140000000"
+          },
+          {
+            "name": "file_version",
+            "ok": true,
+            "detail": "10.0.26100.9711"
+          },
+          {
+            "name": "build_id",
+            "ok": false,
+            "detail": "reference=966F569F-000D7000-000E370E-v10.0.26100.9444 candidate=691840FD-000D7000-000EC7D7-v10.0.26100.9711 (different build)"
+          },
+          {
+            "name": "authenticode",
+            "ok": true,
+            "detail": "WinVerifyTrust=0x00000000 status=valid"
+          },
+          {
+            "name": "microsoft_signer",
+            "ok": true,
+            "detail": "subject=Microsoft Windows; microsoftSigned=true"
+          },
+          {
+            "name": "signature_gate",
+            "ok": true,
+            "detail": "enabled (default policy)"
+          },
+          {
+            "name": "function_body",
+            "ok": false,
+            "detail": "NOT PROVEN: pe-build-identity performs no function-level analysis; located=null, targetChanged=unknown. A same-buildId candidate could still contain a patched target function if it were re-signed (not reproducible offline)."
+          }
+        ],
+        "rationale": "Microsoft signature valid but the build identity changed (ref 966F569F-000D7000-000E370E-v10.0.26100.9444 vs cand 691840FD-000D7000-000EC7D7-v10.0.26100.9711): build changed, function-level validation or manual confirmation required.",
+        "timingMs": 35.08
+      },
+      "identityOnly": {
+        "exitCode": 0,
+        "wallMs": 46.779,
+        "decision": "warn",
+        "buildIdMatch": false,
+        "pass": true,
+        "gateEnabled": false,
+        "rationale": "[diagnostic/buildId-only] build identity differs (ref 966F569F-000D7000-000E370E-v10.0.26100.9444 vs cand 691840FD-000D7000-000EC7D7-v10.0.26100.9711); function-level check required."
+      }
+    },
+    {
+      "index": 5,
+      "case": "build-9974",
+      "candidate": "audiodg-build-26100.9974.exe",
+      "candidatePath": "C:\\WorkSpace\\Claw\\scratch\\lead\\nsp-branches\\lab\\audiodg-build-26100.9974.exe",
+      "expected": "warn",
+      "expectedIdentityOnly": "warn",
+      "note": "newest Microsoft build, signature valid",
+      "exitCode": 0,
+      "wallMs": 45.332,
+      "decision": "warn",
+      "pass": true,
+      "contractProblems": [],
+      "buildIdMatch": false,
+      "build": {
+        "fileVersion": "10.0.26100.9974",
+        "timeDateStamp": 1943520100,
+        "sizeOfImage": 876544,
+        "checksum": 943642,
+        "buildId": "73D7C364-000D6000-000E661A-v10.0.26100.9974"
+      },
+      "referenceBuild": {
+        "fileVersion": "10.0.26100.9444",
+        "timeDateStamp": 2523879071,
+        "sizeOfImage": 880640,
+        "checksum": 931598,
+        "buildId": "966F569F-000D7000-000E370E-v10.0.26100.9444"
+      },
+      "signature": {
+        "candidateStatus": "valid",
+        "candidateSignerSubject": "Microsoft Windows",
+        "candidateMicrosoftSigned": true,
+        "gateEnabled": true
+      },
+      "located": null,
+      "targetChanged": null,
+      "timingMs": 35.775,
+      "checksOk": 6,
+      "checksTotal": 8,
+      "rationale": "Microsoft signature valid but the build identity changed (ref 966F569F-000D7000-000E370E-v10.0.26100.9444 vs cand 73D7C364-000D6000-000E661A-v10.0.26100.9974): build changed, function-level validation or manual confirmation required.",
+      "raw": {
+        "method": "pe-build-identity",
+        "reference": "C:\\WorkSpace\\Claw\\scratch\\lead\\nsp-branches\\lab\\audiodg-build-26100.9444.exe",
+        "candidate": "C:\\WorkSpace\\Claw\\scratch\\lead\\nsp-branches\\lab\\audiodg-build-26100.9974.exe",
+        "build": {
+          "fileVersion": "10.0.26100.9974",
+          "timeDateStamp": 1943520100,
+          "sizeOfImage": 876544,
+          "checksum": 943642,
+          "magic": 523,
+          "machine": 34404,
+          "imageBase": 5368709120,
+          "buildId": "73D7C364-000D6000-000E661A-v10.0.26100.9974"
+        },
+        "referenceBuild": {
+          "fileVersion": "10.0.26100.9444",
+          "timeDateStamp": 2523879071,
+          "sizeOfImage": 880640,
+          "checksum": 931598,
+          "magic": 523,
+          "machine": 34404,
+          "imageBase": 5368709120,
+          "buildId": "966F569F-000D7000-000E370E-v10.0.26100.9444"
+        },
+        "buildIdMatch": false,
+        "located": null,
+        "decision": "warn",
+        "targetChanged": null,
+        "signature": {
+          "candidateStatus": "valid",
+          "candidateWinVerifyTrust": "0x00000000",
+          "candidateSignerSubject": "Microsoft Windows",
+          "candidateMicrosoftSigned": true,
+          "referenceStatus": "valid",
+          "referenceWinVerifyTrust": "0x00000000",
+          "referenceSignerSubject": "Microsoft Windows",
+          "referenceMicrosoftSigned": true,
+          "gateEnabled": true
+        },
+        "checks": [
+          {
+            "name": "pe_parse",
+            "ok": true,
+            "detail": "reference=parsed candidate=parsed"
+          },
+          {
+            "name": "pe_headers",
+            "ok": true,
+            "detail": "ref magic=0x20B machine=0x8664 imageBase=0x140000000; cand magic=0x20B machine=0x8664 imageBase=0x140000000"
+          },
+          {
+            "name": "file_version",
+            "ok": true,
+            "detail": "10.0.26100.9974"
+          },
+          {
+            "name": "build_id",
+            "ok": false,
+            "detail": "reference=966F569F-000D7000-000E370E-v10.0.26100.9444 candidate=73D7C364-000D6000-000E661A-v10.0.26100.9974 (different build)"
+          },
+          {
+            "name": "authenticode",
+            "ok": true,
+            "detail": "WinVerifyTrust=0x00000000 status=valid"
+          },
+          {
+            "name": "microsoft_signer",
+            "ok": true,
+            "detail": "subject=Microsoft Windows; microsoftSigned=true"
+          },
+          {
+            "name": "signature_gate",
+            "ok": true,
+            "detail": "enabled (default policy)"
+          },
+          {
+            "name": "function_body",
+            "ok": false,
+            "detail": "NOT PROVEN: pe-build-identity performs no function-level analysis; located=null, targetChanged=unknown. A same-buildId candidate could still contain a patched target function if it were re-signed (not reproducible offline)."
+          }
+        ],
+        "rationale": "Microsoft signature valid but the build identity changed (ref 966F569F-000D7000-000E370E-v10.0.26100.9444 vs cand 73D7C364-000D6000-000E661A-v10.0.26100.9974): build changed, function-level validation or manual confirmation required.",
+        "timingMs": 35.775
+      },
+      "identityOnly": {
+        "exitCode": 0,
+        "wallMs": 48.48,
+        "decision": "warn",
+        "buildIdMatch": false,
+        "pass": true,
+        "gateEnabled": false,
+        "rationale": "[diagnostic/buildId-only] build identity differs (ref 966F569F-000D7000-000E370E-v10.0.26100.9444 vs cand 73D7C364-000D6000-000E661A-v10.0.26100.9974); function-level check required."
+      }
+    },
+    {
+      "index": 6,
+      "case": "system-9949",
+      "candidate": "audiodg-system-26100.9949.exe",
+      "candidatePath": "C:\\WorkSpace\\Claw\\scratch\\lead\\nsp-branches\\lab\\audiodg-system-26100.9949.exe",
+      "expected": "warn",
+      "expectedIdentityOnly": "warn",
+      "note": "system copy (byte-identical to 9974)",
+      "exitCode": 0,
+      "wallMs": 47.889,
+      "decision": "warn",
+      "pass": true,
+      "contractProblems": [],
+      "buildIdMatch": false,
+      "build": {
+        "fileVersion": "10.0.26100.9974",
+        "timeDateStamp": 1943520100,
+        "sizeOfImage": 876544,
+        "checksum": 943642,
+        "buildId": "73D7C364-000D6000-000E661A-v10.0.26100.9974"
+      },
+      "referenceBuild": {
+        "fileVersion": "10.0.26100.9444",
+        "timeDateStamp": 2523879071,
+        "sizeOfImage": 880640,
+        "checksum": 931598,
+        "buildId": "966F569F-000D7000-000E370E-v10.0.26100.9444"
+      },
+      "signature": {
+        "candidateStatus": "valid",
+        "candidateSignerSubject": "Microsoft Windows",
+        "candidateMicrosoftSigned": true,
+        "gateEnabled": true
+      },
+      "located": null,
+      "targetChanged": null,
+      "timingMs": 36.894,
+      "checksOk": 6,
+      "checksTotal": 8,
+      "rationale": "Microsoft signature valid but the build identity changed (ref 966F569F-000D7000-000E370E-v10.0.26100.9444 vs cand 73D7C364-000D6000-000E661A-v10.0.26100.9974): build changed, function-level validation or manual confirmation required.",
+      "raw": {
+        "method": "pe-build-identity",
+        "reference": "C:\\WorkSpace\\Claw\\scratch\\lead\\nsp-branches\\lab\\audiodg-build-26100.9444.exe",
+        "candidate": "C:\\WorkSpace\\Claw\\scratch\\lead\\nsp-branches\\lab\\audiodg-system-26100.9949.exe",
+        "build": {
+          "fileVersion": "10.0.26100.9974",
+          "timeDateStamp": 1943520100,
+          "sizeOfImage": 876544,
+          "checksum": 943642,
+          "magic": 523,
+          "machine": 34404,
+          "imageBase": 5368709120,
+          "buildId": "73D7C364-000D6000-000E661A-v10.0.26100.9974"
+        },
+        "referenceBuild": {
+          "fileVersion": "10.0.26100.9444",
+          "timeDateStamp": 2523879071,
+          "sizeOfImage": 880640,
+          "checksum": 931598,
+          "magic": 523,
+          "machine": 34404,
+          "imageBase": 5368709120,
+          "buildId": "966F569F-000D7000-000E370E-v10.0.26100.9444"
+        },
+        "buildIdMatch": false,
+        "located": null,
+        "decision": "warn",
+        "targetChanged": null,
+        "signature": {
+          "candidateStatus": "valid",
+          "candidateWinVerifyTrust": "0x00000000",
+          "candidateSignerSubject": "Microsoft Windows",
+          "candidateMicrosoftSigned": true,
+          "referenceStatus": "valid",
+          "referenceWinVerifyTrust": "0x00000000",
+          "referenceSignerSubject": "Microsoft Windows",
+          "referenceMicrosoftSigned": true,
+          "gateEnabled": true
+        },
+        "checks": [
+          {
+            "name": "pe_parse",
+            "ok": true,
+            "detail": "reference=parsed candidate=parsed"
+          },
+          {
+            "name": "pe_headers",
+            "ok": true,
+            "detail": "ref magic=0x20B machine=0x8664 imageBase=0x140000000; cand magic=0x20B machine=0x8664 imageBase=0x140000000"
+          },
+          {
+            "name": "file_version",
+            "ok": true,
+            "detail": "10.0.26100.9974"
+          },
+          {
+            "name": "build_id",
+            "ok": false,
+            "detail": "reference=966F569F-000D7000-000E370E-v10.0.26100.9444 candidate=73D7C364-000D6000-000E661A-v10.0.26100.9974 (different build)"
+          },
+          {
+            "name": "authenticode",
+            "ok": true,
+            "detail": "WinVerifyTrust=0x00000000 status=valid"
+          },
+          {
+            "name": "microsoft_signer",
+            "ok": true,
+            "detail": "subject=Microsoft Windows; microsoftSigned=true"
+          },
+          {
+            "name": "signature_gate",
+            "ok": true,
+            "detail": "enabled (default policy)"
+          },
+          {
+            "name": "function_body",
+            "ok": false,
+            "detail": "NOT PROVEN: pe-build-identity performs no function-level analysis; located=null, targetChanged=unknown. A same-buildId candidate could still contain a patched target function if it were re-signed (not reproducible offline)."
+          }
+        ],
+        "rationale": "Microsoft signature valid but the build identity changed (ref 966F569F-000D7000-000E370E-v10.0.26100.9444 vs cand 73D7C364-000D6000-000E661A-v10.0.26100.9974): build changed, function-level validation or manual confirmation required.",
+        "timingMs": 36.894
+      },
+      "identityOnly": {
+        "exitCode": 0,
+        "wallMs": 42.473,
+        "decision": "warn",
+        "buildIdMatch": false,
+        "pass": true,
+        "gateEnabled": false,
+        "rationale": "[diagnostic/buildId-only] build identity differs (ref 966F569F-000D7000-000E370E-v10.0.26100.9444 vs cand 73D7C364-000D6000-000E661A-v10.0.26100.9974); function-level check required."
+      }
+    },
+    {
+      "index": 7,
+      "case": "D-mut-fn",
+      "candidate": "audiodg-D-mut-fn.exe",
+      "candidatePath": "C:\\WorkSpace\\Claw\\scratch\\lead\\nsp-branches\\lab\\audiodg-D-mut-fn.exe",
+      "expected": "deny",
+      "expectedIdentityOnly": "warn",
+      "note": "9974 plus 1 byte inside target fn; signature broken",
+      "exitCode": 0,
+      "wallMs": 45.696,
+      "decision": "deny",
+      "pass": true,
+      "contractProblems": [],
+      "buildIdMatch": false,
+      "build": {
+        "fileVersion": "10.0.26100.9974",
+        "timeDateStamp": 1943520100,
+        "sizeOfImage": 876544,
+        "checksum": 943642,
+        "buildId": "73D7C364-000D6000-000E661A-v10.0.26100.9974"
+      },
+      "referenceBuild": {
+        "fileVersion": "10.0.26100.9444",
+        "timeDateStamp": 2523879071,
+        "sizeOfImage": 880640,
+        "checksum": 931598,
+        "buildId": "966F569F-000D7000-000E370E-v10.0.26100.9444"
+      },
+      "signature": {
+        "candidateStatus": "invalid",
+        "candidateSignerSubject": "Microsoft Windows",
+        "candidateMicrosoftSigned": null,
+        "gateEnabled": true
+      },
+      "located": null,
+      "targetChanged": null,
+      "timingMs": 35.545,
+      "checksOk": 4,
+      "checksTotal": 8,
+      "rationale": "candidate Authenticode is invalid (WinVerifyTrust=0x80096010): the file was modified after signing. build identity differs from the reference.",
+      "raw": {
+        "method": "pe-build-identity",
+        "reference": "C:\\WorkSpace\\Claw\\scratch\\lead\\nsp-branches\\lab\\audiodg-build-26100.9444.exe",
+        "candidate": "C:\\WorkSpace\\Claw\\scratch\\lead\\nsp-branches\\lab\\audiodg-D-mut-fn.exe",
+        "build": {
+          "fileVersion": "10.0.26100.9974",
+          "timeDateStamp": 1943520100,
+          "sizeOfImage": 876544,
+          "checksum": 943642,
+          "magic": 523,
+          "machine": 34404,
+          "imageBase": 5368709120,
+          "buildId": "73D7C364-000D6000-000E661A-v10.0.26100.9974"
+        },
+        "referenceBuild": {
+          "fileVersion": "10.0.26100.9444",
+          "timeDateStamp": 2523879071,
+          "sizeOfImage": 880640,
+          "checksum": 931598,
+          "magic": 523,
+          "machine": 34404,
+          "imageBase": 5368709120,
+          "buildId": "966F569F-000D7000-000E370E-v10.0.26100.9444"
+        },
+        "buildIdMatch": false,
+        "located": null,
+        "decision": "deny",
+        "targetChanged": null,
+        "signature": {
+          "candidateStatus": "invalid",
+          "candidateWinVerifyTrust": "0x80096010",
+          "candidateSignerSubject": "Microsoft Windows",
+          "candidateMicrosoftSigned": null,
+          "referenceStatus": "valid",
+          "referenceWinVerifyTrust": "0x00000000",
+          "referenceSignerSubject": "Microsoft Windows",
+          "referenceMicrosoftSigned": true,
+          "gateEnabled": true
+        },
+        "checks": [
+          {
+            "name": "pe_parse",
+            "ok": true,
+            "detail": "reference=parsed candidate=parsed"
+          },
+          {
+            "name": "pe_headers",
+            "ok": true,
+            "detail": "ref magic=0x20B machine=0x8664 imageBase=0x140000000; cand magic=0x20B machine=0x8664 imageBase=0x140000000"
+          },
+          {
+            "name": "file_version",
+            "ok": true,
+            "detail": "10.0.26100.9974"
+          },
+          {
+            "name": "build_id",
+            "ok": false,
+            "detail": "reference=966F569F-000D7000-000E370E-v10.0.26100.9444 candidate=73D7C364-000D6000-000E661A-v10.0.26100.9974 (different build)"
+          },
+          {
+            "name": "authenticode",
+            "ok": false,
+            "detail": "WinVerifyTrust=0x80096010 status=invalid"
+          },
+          {
+            "name": "microsoft_signer",
+            "ok": false,
+            "detail": "subject=Microsoft Windows; microsoftSigned=unknown"
+          },
+          {
+            "name": "signature_gate",
+            "ok": true,
+            "detail": "enabled (default policy)"
+          },
+          {
+            "name": "function_body",
+            "ok": false,
+            "detail": "NOT PROVEN: pe-build-identity performs no function-level analysis; located=null, targetChanged=unknown. A same-buildId candidate could still contain a patched target function if it were re-signed (not reproducible offline)."
+          }
+        ],
+        "rationale": "candidate Authenticode is invalid (WinVerifyTrust=0x80096010): the file was modified after signing. build identity differs from the reference.",
+        "timingMs": 35.545
+      },
+      "identityOnly": {
+        "exitCode": 0,
+        "wallMs": 43.193,
+        "decision": "warn",
+        "buildIdMatch": false,
+        "pass": true,
+        "gateEnabled": false,
+        "rationale": "[diagnostic/buildId-only] build identity differs (ref 966F569F-000D7000-000E370E-v10.0.26100.9444 vs cand 73D7C364-000D6000-000E661A-v10.0.26100.9974); function-level check required."
+      }
+    },
+    {
+      "index": 8,
+      "case": "D-mut-else",
+      "candidate": "audiodg-D-mut-else.exe",
+      "candidatePath": "C:\\WorkSpace\\Claw\\scratch\\lead\\nsp-branches\\lab\\audiodg-D-mut-else.exe",
+      "expected": "deny",
+      "expectedIdentityOnly": "warn",
+      "note": "9974 plus 1 byte outside target fn; signature broken",
+      "exitCode": 0,
+      "wallMs": 43.973,
+      "decision": "deny",
+      "pass": true,
+      "contractProblems": [],
+      "buildIdMatch": false,
+      "build": {
+        "fileVersion": "10.0.26100.9974",
+        "timeDateStamp": 1943520100,
+        "sizeOfImage": 876544,
+        "checksum": 943642,
+        "buildId": "73D7C364-000D6000-000E661A-v10.0.26100.9974"
+      },
+      "referenceBuild": {
+        "fileVersion": "10.0.26100.9444",
+        "timeDateStamp": 2523879071,
+        "sizeOfImage": 880640,
+        "checksum": 931598,
+        "buildId": "966F569F-000D7000-000E370E-v10.0.26100.9444"
+      },
+      "signature": {
+        "candidateStatus": "invalid",
+        "candidateSignerSubject": "Microsoft Windows",
+        "candidateMicrosoftSigned": null,
+        "gateEnabled": true
+      },
+      "located": null,
+      "targetChanged": null,
+      "timingMs": 34.271,
+      "checksOk": 4,
+      "checksTotal": 8,
+      "rationale": "candidate Authenticode is invalid (WinVerifyTrust=0x80096010): the file was modified after signing. build identity differs from the reference.",
+      "raw": {
+        "method": "pe-build-identity",
+        "reference": "C:\\WorkSpace\\Claw\\scratch\\lead\\nsp-branches\\lab\\audiodg-build-26100.9444.exe",
+        "candidate": "C:\\WorkSpace\\Claw\\scratch\\lead\\nsp-branches\\lab\\audiodg-D-mut-else.exe",
+        "build": {
+          "fileVersion": "10.0.26100.9974",
+          "timeDateStamp": 1943520100,
+          "sizeOfImage": 876544,
+          "checksum": 943642,
+          "magic": 523,
+          "machine": 34404,
+          "imageBase": 5368709120,
+          "buildId": "73D7C364-000D6000-000E661A-v10.0.26100.9974"
+        },
+        "referenceBuild": {
+          "fileVersion": "10.0.26100.9444",
+          "timeDateStamp": 2523879071,
+          "sizeOfImage": 880640,
+          "checksum": 931598,
+          "magic": 523,
+          "machine": 34404,
+          "imageBase": 5368709120,
+          "buildId": "966F569F-000D7000-000E370E-v10.0.26100.9444"
+        },
+        "buildIdMatch": false,
+        "located": null,
+        "decision": "deny",
+        "targetChanged": null,
+        "signature": {
+          "candidateStatus": "invalid",
+          "candidateWinVerifyTrust": "0x80096010",
+          "candidateSignerSubject": "Microsoft Windows",
+          "candidateMicrosoftSigned": null,
+          "referenceStatus": "valid",
+          "referenceWinVerifyTrust": "0x00000000",
+          "referenceSignerSubject": "Microsoft Windows",
+          "referenceMicrosoftSigned": true,
+          "gateEnabled": true
+        },
+        "checks": [
+          {
+            "name": "pe_parse",
+            "ok": true,
+            "detail": "reference=parsed candidate=parsed"
+          },
+          {
+            "name": "pe_headers",
+            "ok": true,
+            "detail": "ref magic=0x20B machine=0x8664 imageBase=0x140000000; cand magic=0x20B machine=0x8664 imageBase=0x140000000"
+          },
+          {
+            "name": "file_version",
+            "ok": true,
+            "detail": "10.0.26100.9974"
+          },
+          {
+            "name": "build_id",
+            "ok": false,
+            "detail": "reference=966F569F-000D7000-000E370E-v10.0.26100.9444 candidate=73D7C364-000D6000-000E661A-v10.0.26100.9974 (different build)"
+          },
+          {
+            "name": "authenticode",
+            "ok": false,
+            "detail": "WinVerifyTrust=0x80096010 status=invalid"
+          },
+          {
+            "name": "microsoft_signer",
+            "ok": false,
+            "detail": "subject=Microsoft Windows; microsoftSigned=unknown"
+          },
+          {
+            "name": "signature_gate",
+            "ok": true,
+            "detail": "enabled (default policy)"
+          },
+          {
+            "name": "function_body",
+            "ok": false,
+            "detail": "NOT PROVEN: pe-build-identity performs no function-level analysis; located=null, targetChanged=unknown. A same-buildId candidate could still contain a patched target function if it were re-signed (not reproducible offline)."
+          }
+        ],
+        "rationale": "candidate Authenticode is invalid (WinVerifyTrust=0x80096010): the file was modified after signing. build identity differs from the reference.",
+        "timingMs": 34.271
+      },
+      "identityOnly": {
+        "exitCode": 0,
+        "wallMs": 42.89,
+        "decision": "warn",
+        "buildIdMatch": false,
+        "pass": true,
+        "gateEnabled": false,
+        "rationale": "[diagnostic/buildId-only] build identity differs (ref 966F569F-000D7000-000E370E-v10.0.26100.9444 vs cand 73D7C364-000D6000-000E661A-v10.0.26100.9974); function-level check required."
+      }
+    }
+  ]
+}
