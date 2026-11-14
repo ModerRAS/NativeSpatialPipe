@@ -1,0 +1,742 @@
+{
+  "method": "unwind-fn-hash",
+  "generatedAt": "2026-11-14T17:22:46.523195+00:00",
+  "tool": "C:\\WorkSpace\\Claw\\scratch\\lead\\nsp-branches\\wt1-unwind\\build\\hook-validation\\nsp-hook-validate.exe",
+  "reference": {
+    "path": "C:\\WorkSpace\\Claw\\scratch\\lead\\nsp-branches\\lab\\audiodg-build-26100.9444.exe",
+    "rva": 203056,
+    "function": {
+      "rva": 203056,
+      "size": 474,
+      "sha256": "dcca7f47d116f64036da540d72a0226c8eeab859859b0dcb6df8e5b1ebf18013"
+    }
+  },
+  "cases": [
+    {
+      "candidate": "audiodg-build-26100.9444.exe",
+      "decision": "allow",
+      "targetChanged": false,
+      "located": {
+        "rva": 203056,
+        "size": 474,
+        "confidence": 1.0
+      },
+      "referenceHashHit": true,
+      "timingMs": 1.282,
+      "processMs": 34.209,
+      "build": {
+        "fileVersion": "10.0.26100.9444",
+        "timeDateStamp": 2523879071,
+        "sizeOfImage": 880640,
+        "checksum": 931598
+      },
+      "checks": [
+        {
+          "name": "loadReference",
+          "ok": true,
+          "detail": "PE32+ machine=0x8664 sections=12 .pdataEntries=2907 imageBase=0x140000000"
+        },
+        {
+          "name": "referenceTarget",
+          "ok": true,
+          "detail": "rva=0x31930 size=474 normalizedSha256=dcca7f47d116f64036da540d72a0226c8eeab859859b0dcb6df8e5b1ebf18013"
+        },
+        {
+          "name": "referencePrologue",
+          "ok": true,
+          "detail": "16-byte NSP prologue matches Native-Hook.c:71 constant"
+        },
+        {
+          "name": "relocNormalization",
+          "ok": true,
+          "detail": "reference target masks 0 relocation slot(s); image .reloc table has 4202 entries"
+        },
+        {
+          "name": "loadCandidate",
+          "ok": true,
+          "detail": "PE32+ machine=0x8664 sections=12 .pdataEntries=2907 imageBase=0x140000000"
+        },
+        {
+          "name": "buildIdentity",
+          "ok": true,
+          "detail": "candidate TimeDateStamp=0x966f569f SizeOfImage=0xd7000 CheckSum=0xe370e matches reference (0x966f569f/0xd7000/0xe370e)"
+        },
+        {
+          "name": "sameRvaTarget",
+          "ok": true,
+          "detail": "candidate .pdata has Begin==0x31930 size=474"
+        },
+        {
+          "name": "prologue",
+          "ok": true,
+          "detail": "candidate bytes at 0x31930 match the 16-byte NSP prologue"
+        },
+        {
+          "name": "normalizedHashMatch",
+          "ok": true,
+          "detail": "candidate normalized function hash equals reference (dcca7f47d116f64036da540d72a0226c8eeab859859b0dcb6df8e5b1ebf18013)"
+        },
+        {
+          "name": "decisionRule",
+          "ok": true,
+          "detail": "same build identity + pinned RVA + prologue + normalized function hash match => allow (target unchanged)"
+        }
+      ],
+      "expectedDecision": "allow",
+      "expectedTargetChanged": false,
+      "note": "reference build itself",
+      "pass": true
+    },
+    {
+      "candidate": "audiodg-A-mut-else.exe",
+      "decision": "allow",
+      "targetChanged": false,
+      "located": {
+        "rva": 203056,
+        "size": 474,
+        "confidence": 1.0
+      },
+      "referenceHashHit": true,
+      "timingMs": 1.493,
+      "processMs": 13.586,
+      "build": {
+        "fileVersion": "10.0.26100.9444",
+        "timeDateStamp": 2523879071,
+        "sizeOfImage": 880640,
+        "checksum": 931598
+      },
+      "checks": [
+        {
+          "name": "loadReference",
+          "ok": true,
+          "detail": "PE32+ machine=0x8664 sections=12 .pdataEntries=2907 imageBase=0x140000000"
+        },
+        {
+          "name": "referenceTarget",
+          "ok": true,
+          "detail": "rva=0x31930 size=474 normalizedSha256=dcca7f47d116f64036da540d72a0226c8eeab859859b0dcb6df8e5b1ebf18013"
+        },
+        {
+          "name": "referencePrologue",
+          "ok": true,
+          "detail": "16-byte NSP prologue matches Native-Hook.c:71 constant"
+        },
+        {
+          "name": "relocNormalization",
+          "ok": true,
+          "detail": "reference target masks 0 relocation slot(s); image .reloc table has 4202 entries"
+        },
+        {
+          "name": "loadCandidate",
+          "ok": true,
+          "detail": "PE32+ machine=0x8664 sections=12 .pdataEntries=2907 imageBase=0x140000000"
+        },
+        {
+          "name": "buildIdentity",
+          "ok": true,
+          "detail": "candidate TimeDateStamp=0x966f569f SizeOfImage=0xd7000 CheckSum=0xe370e matches reference (0x966f569f/0xd7000/0xe370e)"
+        },
+        {
+          "name": "sameRvaTarget",
+          "ok": true,
+          "detail": "candidate .pdata has Begin==0x31930 size=474"
+        },
+        {
+          "name": "prologue",
+          "ok": true,
+          "detail": "candidate bytes at 0x31930 match the 16-byte NSP prologue"
+        },
+        {
+          "name": "normalizedHashMatch",
+          "ok": true,
+          "detail": "candidate normalized function hash equals reference (dcca7f47d116f64036da540d72a0226c8eeab859859b0dcb6df8e5b1ebf18013)"
+        },
+        {
+          "name": "decisionRule",
+          "ok": true,
+          "detail": "same build identity + pinned RVA + prologue + normalized function hash match => allow (target unchanged)"
+        }
+      ],
+      "expectedDecision": "allow",
+      "expectedTargetChanged": false,
+      "note": "unrelated .reloc byte flipped; target untouched",
+      "pass": true
+    },
+    {
+      "candidate": "audiodg-A-mut-fn.exe",
+      "decision": "deny",
+      "targetChanged": true,
+      "located": {
+        "rva": 203056,
+        "size": 474,
+        "confidence": 1.0
+      },
+      "referenceHashHit": false,
+      "timingMs": 1.467,
+      "processMs": 13.708,
+      "build": {
+        "fileVersion": "10.0.26100.9444",
+        "timeDateStamp": 2523879071,
+        "sizeOfImage": 880640,
+        "checksum": 931598
+      },
+      "checks": [
+        {
+          "name": "loadReference",
+          "ok": true,
+          "detail": "PE32+ machine=0x8664 sections=12 .pdataEntries=2907 imageBase=0x140000000"
+        },
+        {
+          "name": "referenceTarget",
+          "ok": true,
+          "detail": "rva=0x31930 size=474 normalizedSha256=dcca7f47d116f64036da540d72a0226c8eeab859859b0dcb6df8e5b1ebf18013"
+        },
+        {
+          "name": "referencePrologue",
+          "ok": true,
+          "detail": "16-byte NSP prologue matches Native-Hook.c:71 constant"
+        },
+        {
+          "name": "relocNormalization",
+          "ok": true,
+          "detail": "reference target masks 0 relocation slot(s); image .reloc table has 4202 entries"
+        },
+        {
+          "name": "loadCandidate",
+          "ok": true,
+          "detail": "PE32+ machine=0x8664 sections=12 .pdataEntries=2907 imageBase=0x140000000"
+        },
+        {
+          "name": "buildIdentity",
+          "ok": true,
+          "detail": "candidate TimeDateStamp=0x966f569f SizeOfImage=0xd7000 CheckSum=0xe370e matches reference (0x966f569f/0xd7000/0xe370e)"
+        },
+        {
+          "name": "sameRvaTarget",
+          "ok": true,
+          "detail": "candidate .pdata has Begin==0x31930 size=474"
+        },
+        {
+          "name": "prologue",
+          "ok": true,
+          "detail": "candidate bytes at 0x31930 match the 16-byte NSP prologue"
+        },
+        {
+          "name": "normalizedHashMatch",
+          "ok": false,
+          "detail": "candidate normalized function hash differs from reference (target bytes changed)"
+        },
+        {
+          "name": "decisionRule",
+          "ok": false,
+          "detail": "same build identity but the normalized function hash differs => deny (function at pinned RVA changed)"
+        }
+      ],
+      "expectedDecision": "deny",
+      "expectedTargetChanged": true,
+      "note": "target function body byte flipped",
+      "pass": true
+    },
+    {
+      "candidate": "audiodg-build-26100.9711.exe",
+      "decision": "deny",
+      "targetChanged": true,
+      "located": {
+        "rva": 203056,
+        "size": 474,
+        "confidence": 0.6
+      },
+      "referenceHashHit": false,
+      "timingMs": 6.466,
+      "processMs": 18.834,
+      "build": {
+        "fileVersion": "10.0.26100.9711",
+        "timeDateStamp": 1763197181,
+        "sizeOfImage": 880640,
+        "checksum": 968663
+      },
+      "checks": [
+        {
+          "name": "loadReference",
+          "ok": true,
+          "detail": "PE32+ machine=0x8664 sections=12 .pdataEntries=2907 imageBase=0x140000000"
+        },
+        {
+          "name": "referenceTarget",
+          "ok": true,
+          "detail": "rva=0x31930 size=474 normalizedSha256=dcca7f47d116f64036da540d72a0226c8eeab859859b0dcb6df8e5b1ebf18013"
+        },
+        {
+          "name": "referencePrologue",
+          "ok": true,
+          "detail": "16-byte NSP prologue matches Native-Hook.c:71 constant"
+        },
+        {
+          "name": "relocNormalization",
+          "ok": true,
+          "detail": "reference target masks 0 relocation slot(s); image .reloc table has 4202 entries"
+        },
+        {
+          "name": "loadCandidate",
+          "ok": true,
+          "detail": "PE32+ machine=0x8664 sections=12 .pdataEntries=2900 imageBase=0x140000000"
+        },
+        {
+          "name": "buildIdentity",
+          "ok": false,
+          "detail": "candidate TimeDateStamp=0x691840fd SizeOfImage=0xd7000 CheckSum=0xec7d7 differs from reference (0x966f569f/0xd7000/0xe370e)"
+        },
+        {
+          "name": "crossBuildExactMatch",
+          "ok": false,
+          "detail": "no exact normalized SHA-256 match among 2900 scanned function(s) (0 skipped: empty or larger than 8192 bytes)"
+        },
+        {
+          "name": "normalizedHashMatch",
+          "ok": false,
+          "detail": "reference normalized hash not found in candidate"
+        },
+        {
+          "name": "sameRvaPrologue",
+          "ok": true,
+          "detail": "same RVA .pdata entry and prologue match reference but body hash differs"
+        },
+        {
+          "name": "decisionRule",
+          "ok": false,
+          "detail": "different build identity, matching same-RVA prologue, different body hash => deny (pinned function changed; a recompiled build at the same RVA produces the same signal)"
+        }
+      ],
+      "expectedDecision": "deny",
+      "expectedTargetChanged": true,
+      "note": "new build, same RVA+prologue, 4 body bytes changed",
+      "pass": true
+    },
+    {
+      "candidate": "audiodg-build-26100.9974.exe",
+      "decision": "unknown",
+      "targetChanged": null,
+      "located": null,
+      "referenceHashHit": false,
+      "timingMs": 7.075,
+      "processMs": 19.562,
+      "build": {
+        "fileVersion": "10.0.26100.9974",
+        "timeDateStamp": 1943520100,
+        "sizeOfImage": 876544,
+        "checksum": 943642
+      },
+      "checks": [
+        {
+          "name": "loadReference",
+          "ok": true,
+          "detail": "PE32+ machine=0x8664 sections=12 .pdataEntries=2907 imageBase=0x140000000"
+        },
+        {
+          "name": "referenceTarget",
+          "ok": true,
+          "detail": "rva=0x31930 size=474 normalizedSha256=dcca7f47d116f64036da540d72a0226c8eeab859859b0dcb6df8e5b1ebf18013"
+        },
+        {
+          "name": "referencePrologue",
+          "ok": true,
+          "detail": "16-byte NSP prologue matches Native-Hook.c:71 constant"
+        },
+        {
+          "name": "relocNormalization",
+          "ok": true,
+          "detail": "reference target masks 0 relocation slot(s); image .reloc table has 4202 entries"
+        },
+        {
+          "name": "loadCandidate",
+          "ok": true,
+          "detail": "PE32+ machine=0x8664 sections=12 .pdataEntries=2880 imageBase=0x140000000"
+        },
+        {
+          "name": "buildIdentity",
+          "ok": false,
+          "detail": "candidate TimeDateStamp=0x73d7c364 SizeOfImage=0xd6000 CheckSum=0xe661a differs from reference (0x966f569f/0xd7000/0xe370e)"
+        },
+        {
+          "name": "crossBuildExactMatch",
+          "ok": false,
+          "detail": "no exact normalized SHA-256 match among 2880 scanned function(s) (0 skipped: empty or larger than 8192 bytes)"
+        },
+        {
+          "name": "normalizedHashMatch",
+          "ok": false,
+          "detail": "reference normalized hash not found in candidate"
+        },
+        {
+          "name": "decisionRule",
+          "ok": false,
+          "detail": "new build: no exact hash match and no matching pinned-RVA prologue => unknown (manual review required)"
+        }
+      ],
+      "expectedDecision": "unknown",
+      "expectedTargetChanged": null,
+      "note": "new build, target moved 0x31930 -> 0x32c40",
+      "pass": true
+    },
+    {
+      "candidate": "audiodg-system-26100.9949.exe",
+      "decision": "unknown",
+      "targetChanged": null,
+      "located": null,
+      "referenceHashHit": false,
+      "timingMs": 6.789,
+      "processMs": 18.294,
+      "build": {
+        "fileVersion": "10.0.26100.9974",
+        "timeDateStamp": 1943520100,
+        "sizeOfImage": 876544,
+        "checksum": 943642
+      },
+      "checks": [
+        {
+          "name": "loadReference",
+          "ok": true,
+          "detail": "PE32+ machine=0x8664 sections=12 .pdataEntries=2907 imageBase=0x140000000"
+        },
+        {
+          "name": "referenceTarget",
+          "ok": true,
+          "detail": "rva=0x31930 size=474 normalizedSha256=dcca7f47d116f64036da540d72a0226c8eeab859859b0dcb6df8e5b1ebf18013"
+        },
+        {
+          "name": "referencePrologue",
+          "ok": true,
+          "detail": "16-byte NSP prologue matches Native-Hook.c:71 constant"
+        },
+        {
+          "name": "relocNormalization",
+          "ok": true,
+          "detail": "reference target masks 0 relocation slot(s); image .reloc table has 4202 entries"
+        },
+        {
+          "name": "loadCandidate",
+          "ok": true,
+          "detail": "PE32+ machine=0x8664 sections=12 .pdataEntries=2880 imageBase=0x140000000"
+        },
+        {
+          "name": "buildIdentity",
+          "ok": false,
+          "detail": "candidate TimeDateStamp=0x73d7c364 SizeOfImage=0xd6000 CheckSum=0xe661a differs from reference (0x966f569f/0xd7000/0xe370e)"
+        },
+        {
+          "name": "crossBuildExactMatch",
+          "ok": false,
+          "detail": "no exact normalized SHA-256 match among 2880 scanned function(s) (0 skipped: empty or larger than 8192 bytes)"
+        },
+        {
+          "name": "normalizedHashMatch",
+          "ok": false,
+          "detail": "reference normalized hash not found in candidate"
+        },
+        {
+          "name": "decisionRule",
+          "ok": false,
+          "detail": "new build: no exact hash match and no matching pinned-RVA prologue => unknown (manual review required)"
+        }
+      ],
+      "expectedDecision": "unknown",
+      "expectedTargetChanged": null,
+      "note": "identical file served from another servicing path",
+      "pass": true
+    },
+    {
+      "candidate": "audiodg-D-mut-else.exe",
+      "decision": "unknown",
+      "targetChanged": null,
+      "located": null,
+      "referenceHashHit": false,
+      "timingMs": 6.198,
+      "processMs": 18.18,
+      "build": {
+        "fileVersion": "10.0.26100.9974",
+        "timeDateStamp": 1943520100,
+        "sizeOfImage": 876544,
+        "checksum": 943642
+      },
+      "checks": [
+        {
+          "name": "loadReference",
+          "ok": true,
+          "detail": "PE32+ machine=0x8664 sections=12 .pdataEntries=2907 imageBase=0x140000000"
+        },
+        {
+          "name": "referenceTarget",
+          "ok": true,
+          "detail": "rva=0x31930 size=474 normalizedSha256=dcca7f47d116f64036da540d72a0226c8eeab859859b0dcb6df8e5b1ebf18013"
+        },
+        {
+          "name": "referencePrologue",
+          "ok": true,
+          "detail": "16-byte NSP prologue matches Native-Hook.c:71 constant"
+        },
+        {
+          "name": "relocNormalization",
+          "ok": true,
+          "detail": "reference target masks 0 relocation slot(s); image .reloc table has 4202 entries"
+        },
+        {
+          "name": "loadCandidate",
+          "ok": true,
+          "detail": "PE32+ machine=0x8664 sections=12 .pdataEntries=2880 imageBase=0x140000000"
+        },
+        {
+          "name": "buildIdentity",
+          "ok": false,
+          "detail": "candidate TimeDateStamp=0x73d7c364 SizeOfImage=0xd6000 CheckSum=0xe661a differs from reference (0x966f569f/0xd7000/0xe370e)"
+        },
+        {
+          "name": "crossBuildExactMatch",
+          "ok": false,
+          "detail": "no exact normalized SHA-256 match among 2880 scanned function(s) (0 skipped: empty or larger than 8192 bytes)"
+        },
+        {
+          "name": "normalizedHashMatch",
+          "ok": false,
+          "detail": "reference normalized hash not found in candidate"
+        },
+        {
+          "name": "decisionRule",
+          "ok": false,
+          "detail": "new build: no exact hash match and no matching pinned-RVA prologue => unknown (manual review required)"
+        }
+      ],
+      "expectedDecision": "unknown",
+      "expectedTargetChanged": null,
+      "note": "new build + unrelated mutation",
+      "pass": true
+    },
+    {
+      "candidate": "audiodg-D-mut-fn.exe",
+      "decision": "unknown",
+      "targetChanged": null,
+      "located": null,
+      "referenceHashHit": false,
+      "timingMs": 6.534,
+      "processMs": 19.96,
+      "build": {
+        "fileVersion": "10.0.26100.9974",
+        "timeDateStamp": 1943520100,
+        "sizeOfImage": 876544,
+        "checksum": 943642
+      },
+      "checks": [
+        {
+          "name": "loadReference",
+          "ok": true,
+          "detail": "PE32+ machine=0x8664 sections=12 .pdataEntries=2907 imageBase=0x140000000"
+        },
+        {
+          "name": "referenceTarget",
+          "ok": true,
+          "detail": "rva=0x31930 size=474 normalizedSha256=dcca7f47d116f64036da540d72a0226c8eeab859859b0dcb6df8e5b1ebf18013"
+        },
+        {
+          "name": "referencePrologue",
+          "ok": true,
+          "detail": "16-byte NSP prologue matches Native-Hook.c:71 constant"
+        },
+        {
+          "name": "relocNormalization",
+          "ok": true,
+          "detail": "reference target masks 0 relocation slot(s); image .reloc table has 4202 entries"
+        },
+        {
+          "name": "loadCandidate",
+          "ok": true,
+          "detail": "PE32+ machine=0x8664 sections=12 .pdataEntries=2880 imageBase=0x140000000"
+        },
+        {
+          "name": "buildIdentity",
+          "ok": false,
+          "detail": "candidate TimeDateStamp=0x73d7c364 SizeOfImage=0xd6000 CheckSum=0xe661a differs from reference (0x966f569f/0xd7000/0xe370e)"
+        },
+        {
+          "name": "crossBuildExactMatch",
+          "ok": false,
+          "detail": "no exact normalized SHA-256 match among 2880 scanned function(s) (0 skipped: empty or larger than 8192 bytes)"
+        },
+        {
+          "name": "normalizedHashMatch",
+          "ok": false,
+          "detail": "reference normalized hash not found in candidate"
+        },
+        {
+          "name": "decisionRule",
+          "ok": false,
+          "detail": "new build: no exact hash match and no matching pinned-RVA prologue => unknown (manual review required)"
+        }
+      ],
+      "expectedDecision": "unknown",
+      "expectedTargetChanged": null,
+      "note": "new build + function mutation (invisible to exact hash vs 9444)",
+      "pass": true
+    }
+  ],
+  "supplementary": [
+    {
+      "candidate": "audiodg-D-mut-else.exe",
+      "decision": "allow",
+      "targetChanged": false,
+      "located": {
+        "rva": 207936,
+        "size": 474,
+        "confidence": 1.0
+      },
+      "referenceHashHit": true,
+      "timingMs": 1.373,
+      "processMs": 12.102,
+      "build": {
+        "fileVersion": "10.0.26100.9974",
+        "timeDateStamp": 1943520100,
+        "sizeOfImage": 876544,
+        "checksum": 943642
+      },
+      "checks": [
+        {
+          "name": "loadReference",
+          "ok": true,
+          "detail": "PE32+ machine=0x8664 sections=12 .pdataEntries=2880 imageBase=0x140000000"
+        },
+        {
+          "name": "referenceTarget",
+          "ok": true,
+          "detail": "rva=0x32c40 size=474 normalizedSha256=a03c7009990e7025a0ae54441cef4694b5ac239eb574ddb8c74f5ff938547e5b"
+        },
+        {
+          "name": "referencePrologue",
+          "ok": true,
+          "detail": "16-byte NSP prologue matches Native-Hook.c:71 constant"
+        },
+        {
+          "name": "relocNormalization",
+          "ok": true,
+          "detail": "reference target masks 0 relocation slot(s); image .reloc table has 4182 entries"
+        },
+        {
+          "name": "loadCandidate",
+          "ok": true,
+          "detail": "PE32+ machine=0x8664 sections=12 .pdataEntries=2880 imageBase=0x140000000"
+        },
+        {
+          "name": "buildIdentity",
+          "ok": true,
+          "detail": "candidate TimeDateStamp=0x73d7c364 SizeOfImage=0xd6000 CheckSum=0xe661a matches reference (0x73d7c364/0xd6000/0xe661a)"
+        },
+        {
+          "name": "sameRvaTarget",
+          "ok": true,
+          "detail": "candidate .pdata has Begin==0x32c40 size=474"
+        },
+        {
+          "name": "prologue",
+          "ok": true,
+          "detail": "candidate bytes at 0x32c40 match the 16-byte NSP prologue"
+        },
+        {
+          "name": "normalizedHashMatch",
+          "ok": true,
+          "detail": "candidate normalized function hash equals reference (a03c7009990e7025a0ae54441cef4694b5ac239eb574ddb8c74f5ff938547e5b)"
+        },
+        {
+          "name": "decisionRule",
+          "ok": true,
+          "detail": "same build identity + pinned RVA + prologue + normalized function hash match => allow (target unchanged)"
+        }
+      ],
+      "reference": "audiodg-build-26100.9974.exe",
+      "referenceRva": "32c40",
+      "expectedDecision": "allow",
+      "expectedTargetChanged": false,
+      "pass": true
+    },
+    {
+      "candidate": "audiodg-D-mut-fn.exe",
+      "decision": "deny",
+      "targetChanged": true,
+      "located": {
+        "rva": 207936,
+        "size": 474,
+        "confidence": 1.0
+      },
+      "referenceHashHit": false,
+      "timingMs": 1.308,
+      "processMs": 12.831,
+      "build": {
+        "fileVersion": "10.0.26100.9974",
+        "timeDateStamp": 1943520100,
+        "sizeOfImage": 876544,
+        "checksum": 943642
+      },
+      "checks": [
+        {
+          "name": "loadReference",
+          "ok": true,
+          "detail": "PE32+ machine=0x8664 sections=12 .pdataEntries=2880 imageBase=0x140000000"
+        },
+        {
+          "name": "referenceTarget",
+          "ok": true,
+          "detail": "rva=0x32c40 size=474 normalizedSha256=a03c7009990e7025a0ae54441cef4694b5ac239eb574ddb8c74f5ff938547e5b"
+        },
+        {
+          "name": "referencePrologue",
+          "ok": true,
+          "detail": "16-byte NSP prologue matches Native-Hook.c:71 constant"
+        },
+        {
+          "name": "relocNormalization",
+          "ok": true,
+          "detail": "reference target masks 0 relocation slot(s); image .reloc table has 4182 entries"
+        },
+        {
+          "name": "loadCandidate",
+          "ok": true,
+          "detail": "PE32+ machine=0x8664 sections=12 .pdataEntries=2880 imageBase=0x140000000"
+        },
+        {
+          "name": "buildIdentity",
+          "ok": true,
+          "detail": "candidate TimeDateStamp=0x73d7c364 SizeOfImage=0xd6000 CheckSum=0xe661a matches reference (0x73d7c364/0xd6000/0xe661a)"
+        },
+        {
+          "name": "sameRvaTarget",
+          "ok": true,
+          "detail": "candidate .pdata has Begin==0x32c40 size=474"
+        },
+        {
+          "name": "prologue",
+          "ok": true,
+          "detail": "candidate bytes at 0x32c40 match the 16-byte NSP prologue"
+        },
+        {
+          "name": "normalizedHashMatch",
+          "ok": false,
+          "detail": "candidate normalized function hash differs from reference (target bytes changed)"
+        },
+        {
+          "name": "decisionRule",
+          "ok": false,
+          "detail": "same build identity but the normalized function hash differs => deny (function at pinned RVA changed)"
+        }
+      ],
+      "reference": "audiodg-build-26100.9974.exe",
+      "referenceRva": "32c40",
+      "expectedDecision": "deny",
+      "expectedTargetChanged": true,
+      "pass": true
+    }
+  ],
+  "errorContract": {
+    "checked": true,
+    "ok": true,
+    "exitCode": 2,
+    "json": "{\"error\":\"candidate PE load failed: cannot open file\",\"method\":\"unwind-fn-hash\"}"
+  },
+  "passed": 8,
+  "total": 8
+}
