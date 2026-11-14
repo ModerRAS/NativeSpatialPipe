@@ -1,0 +1,535 @@
+{
+  "method": "structural-invariants",
+  "tool": "C:\\WorkSpace\\Claw\\scratch\\lead\\nsp-branches\\wt4-structural\\build\\hook-validation\\nsp-hook-validate.exe",
+  "lab": "C:\\WorkSpace\\Claw\\scratch\\lead\\nsp-branches\\lab",
+  "reference": "audiodg-build-26100.9444.exe",
+  "cases": [
+    {
+      "name": "reference-self",
+      "candidate": "audiodg-build-26100.9444.exe",
+      "expectedDecision": "allow",
+      "expectedRva": 203056,
+      "decision": "allow",
+      "located": {
+        "rva": 203056,
+        "size": 474,
+        "confidence": 0.95
+      },
+      "signatureFunctions": 4,
+      "targetRefs": 2,
+      "timingMs": 6.712,
+      "passed": true,
+      "note": "fingerprint: same build+layout",
+      "checks": [
+        {
+          "name": "pe-parse",
+          "ok": true,
+          "detail": "imageBase=0x140000000 sections=12 .text/.pdata/.rdata/.data parsed; fileVersion=10.0.26100.9444"
+        },
+        {
+          "name": "pdata-candidates",
+          "ok": true,
+          "detail": "reference=2907 functions, candidate=2907 functions"
+        },
+        {
+          "name": "code-pointer-refs",
+          "ok": true,
+          "detail": "1704 8-byte qwords in .rdata/.data equal ImageBase+candidate entry (reference=1704)"
+        },
+        {
+          "name": "field-access-signature",
+          "ok": true,
+          "detail": "candidate signature functions=4 (need >=3 distinct of 0x510/0x5d0/0x5d4/0x5d8/0xC/0x14/0x28/0x38 and >=2 refs): 0x2e600(k=4,refs=2) ,0x31560(k=4,refs=2) ,0x31b10(k=3,refs=2) ,0x34600(k=4,refs=2)"
+        },
+        {
+          "name": "vtable-base-inference",
+          "ok": true,
+          "detail": "runBegin=0x9f1a8 clusterMinSlot=0x9f510 inferredVtable=0x9f4f8 (4 signature slots in run; reference layout matches known vtable 0x9f4f8: yes)"
+        },
+        {
+          "name": "known-vtable-validation",
+          "ok": true,
+          "detail": "reference target rva=0x31930 in .pdata=yes refs=2; signature slots inside pinned vt1(0x9f4f8)/vt2(0xa2d58) windows=4/4 (slot offsets are vtable+0x18..0x30, not the vtable base)"
+        },
+        {
+          "name": "target-located",
+          "ok": true,
+          "detail": "slotRva=0x9f5f8 slotIndex=32 vtableRva=0x9f4f8 targetSize=474 refs=2 (slot-relative structural anchor)"
+        },
+        {
+          "name": "body-bytes",
+          "ok": false,
+          "detail": "this method does NOT verify function body bytes: a 1-byte mutation at +0x60 is undetectable unless it lands on the prologue or a field-displacement constant"
+        }
+      ],
+      "build": {
+        "fileVersion": "10.0.26100.9444",
+        "timeDateStamp": 2523879071,
+        "sizeOfImage": 880640,
+        "checksum": 931598
+      }
+    },
+    {
+      "name": "A-mut-else",
+      "candidate": "audiodg-A-mut-else.exe",
+      "expectedDecision": "allow",
+      "expectedRva": 203056,
+      "decision": "allow",
+      "located": {
+        "rva": 203056,
+        "size": 474,
+        "confidence": 0.95
+      },
+      "signatureFunctions": 4,
+      "targetRefs": 2,
+      "timingMs": 6.803,
+      "passed": true,
+      "note": "unrelated section mutated",
+      "checks": [
+        {
+          "name": "pe-parse",
+          "ok": true,
+          "detail": "imageBase=0x140000000 sections=12 .text/.pdata/.rdata/.data parsed; fileVersion=10.0.26100.9444"
+        },
+        {
+          "name": "pdata-candidates",
+          "ok": true,
+          "detail": "reference=2907 functions, candidate=2907 functions"
+        },
+        {
+          "name": "code-pointer-refs",
+          "ok": true,
+          "detail": "1704 8-byte qwords in .rdata/.data equal ImageBase+candidate entry (reference=1704)"
+        },
+        {
+          "name": "field-access-signature",
+          "ok": true,
+          "detail": "candidate signature functions=4 (need >=3 distinct of 0x510/0x5d0/0x5d4/0x5d8/0xC/0x14/0x28/0x38 and >=2 refs): 0x2e600(k=4,refs=2) ,0x31560(k=4,refs=2) ,0x31b10(k=3,refs=2) ,0x34600(k=4,refs=2)"
+        },
+        {
+          "name": "vtable-base-inference",
+          "ok": true,
+          "detail": "runBegin=0x9f1a8 clusterMinSlot=0x9f510 inferredVtable=0x9f4f8 (4 signature slots in run; reference layout matches known vtable 0x9f4f8: yes)"
+        },
+        {
+          "name": "known-vtable-validation",
+          "ok": true,
+          "detail": "reference target rva=0x31930 in .pdata=yes refs=2; signature slots inside pinned vt1(0x9f4f8)/vt2(0xa2d58) windows=4/4 (slot offsets are vtable+0x18..0x30, not the vtable base)"
+        },
+        {
+          "name": "target-located",
+          "ok": true,
+          "detail": "slotRva=0x9f5f8 slotIndex=32 vtableRva=0x9f4f8 targetSize=474 refs=2 (slot-relative structural anchor)"
+        },
+        {
+          "name": "body-bytes",
+          "ok": false,
+          "detail": "this method does NOT verify function body bytes: a 1-byte mutation at +0x60 is undetectable unless it lands on the prologue or a field-displacement constant"
+        }
+      ],
+      "build": {
+        "fileVersion": "10.0.26100.9444",
+        "timeDateStamp": 2523879071,
+        "sizeOfImage": 880640,
+        "checksum": 931598
+      }
+    },
+    {
+      "name": "A-mut-fn",
+      "candidate": "audiodg-A-mut-fn.exe",
+      "expectedDecision": "allow",
+      "expectedRva": 203056,
+      "decision": "allow",
+      "located": {
+        "rva": 203056,
+        "size": 474,
+        "confidence": 0.95
+      },
+      "signatureFunctions": 4,
+      "targetRefs": 2,
+      "timingMs": 6.769,
+      "passed": true,
+      "note": "LIMITATION: body byte at +0x60 not covered",
+      "checks": [
+        {
+          "name": "pe-parse",
+          "ok": true,
+          "detail": "imageBase=0x140000000 sections=12 .text/.pdata/.rdata/.data parsed; fileVersion=10.0.26100.9444"
+        },
+        {
+          "name": "pdata-candidates",
+          "ok": true,
+          "detail": "reference=2907 functions, candidate=2907 functions"
+        },
+        {
+          "name": "code-pointer-refs",
+          "ok": true,
+          "detail": "1704 8-byte qwords in .rdata/.data equal ImageBase+candidate entry (reference=1704)"
+        },
+        {
+          "name": "field-access-signature",
+          "ok": true,
+          "detail": "candidate signature functions=4 (need >=3 distinct of 0x510/0x5d0/0x5d4/0x5d8/0xC/0x14/0x28/0x38 and >=2 refs): 0x2e600(k=4,refs=2) ,0x31560(k=4,refs=2) ,0x31b10(k=3,refs=2) ,0x34600(k=4,refs=2)"
+        },
+        {
+          "name": "vtable-base-inference",
+          "ok": true,
+          "detail": "runBegin=0x9f1a8 clusterMinSlot=0x9f510 inferredVtable=0x9f4f8 (4 signature slots in run; reference layout matches known vtable 0x9f4f8: yes)"
+        },
+        {
+          "name": "known-vtable-validation",
+          "ok": true,
+          "detail": "reference target rva=0x31930 in .pdata=yes refs=2; signature slots inside pinned vt1(0x9f4f8)/vt2(0xa2d58) windows=4/4 (slot offsets are vtable+0x18..0x30, not the vtable base)"
+        },
+        {
+          "name": "target-located",
+          "ok": true,
+          "detail": "slotRva=0x9f5f8 slotIndex=32 vtableRva=0x9f4f8 targetSize=474 refs=2 (slot-relative structural anchor)"
+        },
+        {
+          "name": "body-bytes",
+          "ok": false,
+          "detail": "this method does NOT verify function body bytes: a 1-byte mutation at +0x60 is undetectable unless it lands on the prologue or a field-displacement constant"
+        }
+      ],
+      "build": {
+        "fileVersion": "10.0.26100.9444",
+        "timeDateStamp": 2523879071,
+        "sizeOfImage": 880640,
+        "checksum": 931598
+      }
+    },
+    {
+      "name": "B-build-26100.9711",
+      "candidate": "audiodg-build-26100.9711.exe",
+      "expectedDecision": "warn",
+      "expectedRva": 203056,
+      "decision": "warn",
+      "located": {
+        "rva": 203056,
+        "size": 474,
+        "confidence": 0.95
+      },
+      "signatureFunctions": 4,
+      "targetRefs": 2,
+      "timingMs": 7.702,
+      "passed": true,
+      "note": "same layout, recompiled build",
+      "checks": [
+        {
+          "name": "pe-parse",
+          "ok": true,
+          "detail": "imageBase=0x140000000 sections=12 .text/.pdata/.rdata/.data parsed; fileVersion=10.0.26100.9711"
+        },
+        {
+          "name": "pdata-candidates",
+          "ok": true,
+          "detail": "reference=2907 functions, candidate=2900 functions"
+        },
+        {
+          "name": "code-pointer-refs",
+          "ok": true,
+          "detail": "1704 8-byte qwords in .rdata/.data equal ImageBase+candidate entry (reference=1704)"
+        },
+        {
+          "name": "field-access-signature",
+          "ok": true,
+          "detail": "candidate signature functions=4 (need >=3 distinct of 0x510/0x5d0/0x5d4/0x5d8/0xC/0x14/0x28/0x38 and >=2 refs): 0x2e600(k=4,refs=2) ,0x31560(k=4,refs=2) ,0x31b10(k=3,refs=2) ,0x34600(k=4,refs=2)"
+        },
+        {
+          "name": "vtable-base-inference",
+          "ok": true,
+          "detail": "runBegin=0x9f1a8 clusterMinSlot=0x9f510 inferredVtable=0x9f4f8 (4 signature slots in run; reference layout matches known vtable 0x9f4f8: yes)"
+        },
+        {
+          "name": "known-vtable-validation",
+          "ok": true,
+          "detail": "reference target rva=0x31930 in .pdata=yes refs=2; signature slots inside pinned vt1(0x9f4f8)/vt2(0xa2d58) windows=4/4 (slot offsets are vtable+0x18..0x30, not the vtable base)"
+        },
+        {
+          "name": "target-located",
+          "ok": true,
+          "detail": "slotRva=0x9f5f8 slotIndex=32 vtableRva=0x9f4f8 targetSize=474 refs=2 (slot-relative structural anchor)"
+        },
+        {
+          "name": "body-bytes",
+          "ok": false,
+          "detail": "this method does NOT verify function body bytes: a 1-byte mutation at +0x60 is undetectable unless it lands on the prologue or a field-displacement constant"
+        }
+      ],
+      "build": {
+        "fileVersion": "10.0.26100.9711",
+        "timeDateStamp": 1763197181,
+        "sizeOfImage": 880640,
+        "checksum": 968663
+      }
+    },
+    {
+      "name": "C-build-26100.9974",
+      "candidate": "audiodg-build-26100.9974.exe",
+      "expectedDecision": "warn",
+      "expectedRva": 207936,
+      "decision": "warn",
+      "located": {
+        "rva": 207936,
+        "size": 474,
+        "confidence": 0.82
+      },
+      "signatureFunctions": 4,
+      "targetRefs": 2,
+      "timingMs": 6.816,
+      "passed": true,
+      "note": "target moved, located structurally",
+      "checks": [
+        {
+          "name": "pe-parse",
+          "ok": true,
+          "detail": "imageBase=0x140000000 sections=12 .text/.pdata/.rdata/.data parsed; fileVersion=10.0.26100.9974"
+        },
+        {
+          "name": "pdata-candidates",
+          "ok": true,
+          "detail": "reference=2907 functions, candidate=2880 functions"
+        },
+        {
+          "name": "code-pointer-refs",
+          "ok": true,
+          "detail": "1704 8-byte qwords in .rdata/.data equal ImageBase+candidate entry (reference=1704)"
+        },
+        {
+          "name": "field-access-signature",
+          "ok": true,
+          "detail": "candidate signature functions=4 (need >=3 distinct of 0x510/0x5d0/0x5d4/0x5d8/0xC/0x14/0x28/0x38 and >=2 refs): 0x2f940(k=4,refs=2) ,0x32870(k=4,refs=2) ,0x32e20(k=3,refs=2) ,0x35910(k=4,refs=2)"
+        },
+        {
+          "name": "vtable-base-inference",
+          "ok": true,
+          "detail": "runBegin=0x9e198 clusterMinSlot=0x9e500 inferredVtable=0x9e4e8 (4 signature slots in run; reference layout matches known vtable 0x9f4f8: no (recompiled build))"
+        },
+        {
+          "name": "known-vtable-validation",
+          "ok": true,
+          "detail": "reference target rva=0x31930 in .pdata=yes refs=2; signature slots inside pinned vt1(0x9f4f8)/vt2(0xa2d58) windows=4/4 (slot offsets are vtable+0x18..0x30, not the vtable base)"
+        },
+        {
+          "name": "target-located",
+          "ok": true,
+          "detail": "slotRva=0x9e5e8 slotIndex=32 vtableRva=0x9e4e8 targetSize=474 refs=2 (slot-relative structural anchor)"
+        },
+        {
+          "name": "body-bytes",
+          "ok": false,
+          "detail": "this method does NOT verify function body bytes: a 1-byte mutation at +0x60 is undetectable unless it lands on the prologue or a field-displacement constant"
+        }
+      ],
+      "build": {
+        "fileVersion": "10.0.26100.9974",
+        "timeDateStamp": 1943520100,
+        "sizeOfImage": 876544,
+        "checksum": 943642
+      }
+    },
+    {
+      "name": "system-26100.9949",
+      "candidate": "audiodg-system-26100.9949.exe",
+      "expectedDecision": "warn",
+      "expectedRva": 207936,
+      "decision": "warn",
+      "located": {
+        "rva": 207936,
+        "size": 474,
+        "confidence": 0.82
+      },
+      "signatureFunctions": 4,
+      "targetRefs": 2,
+      "timingMs": 7.365,
+      "passed": true,
+      "note": "system servicing copy of C",
+      "checks": [
+        {
+          "name": "pe-parse",
+          "ok": true,
+          "detail": "imageBase=0x140000000 sections=12 .text/.pdata/.rdata/.data parsed; fileVersion=10.0.26100.9974"
+        },
+        {
+          "name": "pdata-candidates",
+          "ok": true,
+          "detail": "reference=2907 functions, candidate=2880 functions"
+        },
+        {
+          "name": "code-pointer-refs",
+          "ok": true,
+          "detail": "1704 8-byte qwords in .rdata/.data equal ImageBase+candidate entry (reference=1704)"
+        },
+        {
+          "name": "field-access-signature",
+          "ok": true,
+          "detail": "candidate signature functions=4 (need >=3 distinct of 0x510/0x5d0/0x5d4/0x5d8/0xC/0x14/0x28/0x38 and >=2 refs): 0x2f940(k=4,refs=2) ,0x32870(k=4,refs=2) ,0x32e20(k=3,refs=2) ,0x35910(k=4,refs=2)"
+        },
+        {
+          "name": "vtable-base-inference",
+          "ok": true,
+          "detail": "runBegin=0x9e198 clusterMinSlot=0x9e500 inferredVtable=0x9e4e8 (4 signature slots in run; reference layout matches known vtable 0x9f4f8: no (recompiled build))"
+        },
+        {
+          "name": "known-vtable-validation",
+          "ok": true,
+          "detail": "reference target rva=0x31930 in .pdata=yes refs=2; signature slots inside pinned vt1(0x9f4f8)/vt2(0xa2d58) windows=4/4 (slot offsets are vtable+0x18..0x30, not the vtable base)"
+        },
+        {
+          "name": "target-located",
+          "ok": true,
+          "detail": "slotRva=0x9e5e8 slotIndex=32 vtableRva=0x9e4e8 targetSize=474 refs=2 (slot-relative structural anchor)"
+        },
+        {
+          "name": "body-bytes",
+          "ok": false,
+          "detail": "this method does NOT verify function body bytes: a 1-byte mutation at +0x60 is undetectable unless it lands on the prologue or a field-displacement constant"
+        }
+      ],
+      "build": {
+        "fileVersion": "10.0.26100.9974",
+        "timeDateStamp": 1943520100,
+        "sizeOfImage": 876544,
+        "checksum": 943642
+      }
+    },
+    {
+      "name": "D-mut-fn",
+      "candidate": "audiodg-D-mut-fn.exe",
+      "expectedDecision": "warn",
+      "expectedRva": 207936,
+      "decision": "warn",
+      "located": {
+        "rva": 207936,
+        "size": 474,
+        "confidence": 0.82
+      },
+      "signatureFunctions": 4,
+      "targetRefs": 2,
+      "timingMs": 6.955,
+      "passed": true,
+      "note": "LIMITATION: body byte at +0x60 not covered",
+      "checks": [
+        {
+          "name": "pe-parse",
+          "ok": true,
+          "detail": "imageBase=0x140000000 sections=12 .text/.pdata/.rdata/.data parsed; fileVersion=10.0.26100.9974"
+        },
+        {
+          "name": "pdata-candidates",
+          "ok": true,
+          "detail": "reference=2907 functions, candidate=2880 functions"
+        },
+        {
+          "name": "code-pointer-refs",
+          "ok": true,
+          "detail": "1704 8-byte qwords in .rdata/.data equal ImageBase+candidate entry (reference=1704)"
+        },
+        {
+          "name": "field-access-signature",
+          "ok": true,
+          "detail": "candidate signature functions=4 (need >=3 distinct of 0x510/0x5d0/0x5d4/0x5d8/0xC/0x14/0x28/0x38 and >=2 refs): 0x2f940(k=4,refs=2) ,0x32870(k=4,refs=2) ,0x32e20(k=3,refs=2) ,0x35910(k=4,refs=2)"
+        },
+        {
+          "name": "vtable-base-inference",
+          "ok": true,
+          "detail": "runBegin=0x9e198 clusterMinSlot=0x9e500 inferredVtable=0x9e4e8 (4 signature slots in run; reference layout matches known vtable 0x9f4f8: no (recompiled build))"
+        },
+        {
+          "name": "known-vtable-validation",
+          "ok": true,
+          "detail": "reference target rva=0x31930 in .pdata=yes refs=2; signature slots inside pinned vt1(0x9f4f8)/vt2(0xa2d58) windows=4/4 (slot offsets are vtable+0x18..0x30, not the vtable base)"
+        },
+        {
+          "name": "target-located",
+          "ok": true,
+          "detail": "slotRva=0x9e5e8 slotIndex=32 vtableRva=0x9e4e8 targetSize=474 refs=2 (slot-relative structural anchor)"
+        },
+        {
+          "name": "body-bytes",
+          "ok": false,
+          "detail": "this method does NOT verify function body bytes: a 1-byte mutation at +0x60 is undetectable unless it lands on the prologue or a field-displacement constant"
+        }
+      ],
+      "build": {
+        "fileVersion": "10.0.26100.9974",
+        "timeDateStamp": 1943520100,
+        "sizeOfImage": 876544,
+        "checksum": 943642
+      }
+    },
+    {
+      "name": "D-mut-else",
+      "candidate": "audiodg-D-mut-else.exe",
+      "expectedDecision": "warn",
+      "expectedRva": 207936,
+      "decision": "warn",
+      "located": {
+        "rva": 207936,
+        "size": 474,
+        "confidence": 0.82
+      },
+      "signatureFunctions": 4,
+      "targetRefs": 2,
+      "timingMs": 7.178,
+      "passed": true,
+      "note": "unrelated section mutated",
+      "checks": [
+        {
+          "name": "pe-parse",
+          "ok": true,
+          "detail": "imageBase=0x140000000 sections=12 .text/.pdata/.rdata/.data parsed; fileVersion=10.0.26100.9974"
+        },
+        {
+          "name": "pdata-candidates",
+          "ok": true,
+          "detail": "reference=2907 functions, candidate=2880 functions"
+        },
+        {
+          "name": "code-pointer-refs",
+          "ok": true,
+          "detail": "1704 8-byte qwords in .rdata/.data equal ImageBase+candidate entry (reference=1704)"
+        },
+        {
+          "name": "field-access-signature",
+          "ok": true,
+          "detail": "candidate signature functions=4 (need >=3 distinct of 0x510/0x5d0/0x5d4/0x5d8/0xC/0x14/0x28/0x38 and >=2 refs): 0x2f940(k=4,refs=2) ,0x32870(k=4,refs=2) ,0x32e20(k=3,refs=2) ,0x35910(k=4,refs=2)"
+        },
+        {
+          "name": "vtable-base-inference",
+          "ok": true,
+          "detail": "runBegin=0x9e198 clusterMinSlot=0x9e500 inferredVtable=0x9e4e8 (4 signature slots in run; reference layout matches known vtable 0x9f4f8: no (recompiled build))"
+        },
+        {
+          "name": "known-vtable-validation",
+          "ok": true,
+          "detail": "reference target rva=0x31930 in .pdata=yes refs=2; signature slots inside pinned vt1(0x9f4f8)/vt2(0xa2d58) windows=4/4 (slot offsets are vtable+0x18..0x30, not the vtable base)"
+        },
+        {
+          "name": "target-located",
+          "ok": true,
+          "detail": "slotRva=0x9e5e8 slotIndex=32 vtableRva=0x9e4e8 targetSize=474 refs=2 (slot-relative structural anchor)"
+        },
+        {
+          "name": "body-bytes",
+          "ok": false,
+          "detail": "this method does NOT verify function body bytes: a 1-byte mutation at +0x60 is undetectable unless it lands on the prologue or a field-displacement constant"
+        }
+      ],
+      "build": {
+        "fileVersion": "10.0.26100.9974",
+        "timeDateStamp": 1943520100,
+        "sizeOfImage": 876544,
+        "checksum": 943642
+      }
+    }
+  ],
+  "passed": 8,
+  "total": 8,
+  "limitations": [
+    "A-mut-fn",
+    "D-mut-fn"
+  ],
+  "generatedAt": "2026-11-15T01:15:58+0800"
+}
