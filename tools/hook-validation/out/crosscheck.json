@@ -1,0 +1,451 @@
+{
+  "tool": "shadow_validate.py",
+  "fixtures": "C:\\WorkSpace\\Claw\\scratch\\lead\\nsp-branches\\wt5-behavioral\\build\\hook-validation\\out\\fixtures.jsonl",
+  "dll": "C:\\WorkSpace\\Claw\\scratch\\lead\\nsp-branches\\wt5-behavioral\\build\\hook-validation\\nsp-shadow-gate.dll",
+  "config": {
+    "strict_frames": 0,
+    "strict_gain": 0,
+    "warnings_as_error": 0
+  },
+  "totals": {
+    "cases": 19,
+    "passed": 19,
+    "failed": 0,
+    "dllMismatches": 0
+  },
+  "mismatches": [],
+  "cases": [
+    {
+      "name": "normal_160_objects",
+      "expect": "ok",
+      "python": {
+        "ok": 1,
+        "code": 0,
+        "codeName": "OK",
+        "detail": "OK count=160 frames=480 stride=1920 checks=78089 warnings=0",
+        "warnings": []
+      },
+      "dll": {
+        "ok": 1,
+        "code": 0,
+        "codeName": "OK",
+        "detail": "OK count=160 frames=480 stride=1920 checks=78089 warnings=0",
+        "warnings": [],
+        "checks": 78089
+      },
+      "expectedMatch": true,
+      "dllMatch": true,
+      "pass": true
+    },
+    {
+      "name": "normal_pure_bed_12ch",
+      "expect": "ok",
+      "python": {
+        "ok": 1,
+        "code": 0,
+        "codeName": "OK",
+        "detail": "OK count=12 frames=480 stride=1920 checks=5877 warnings=0",
+        "warnings": []
+      },
+      "dll": {
+        "ok": 1,
+        "code": 0,
+        "codeName": "OK",
+        "detail": "OK count=12 frames=480 stride=1920 checks=5877 warnings=0",
+        "warnings": [],
+        "checks": 5877
+      },
+      "expectedMatch": true,
+      "dllMatch": true,
+      "pass": true
+    },
+    {
+      "name": "normal_single_object",
+      "expect": "ok",
+      "python": {
+        "ok": 1,
+        "code": 0,
+        "codeName": "OK",
+        "detail": "OK count=1 frames=480 stride=1920 checks=497 warnings=0",
+        "warnings": []
+      },
+      "dll": {
+        "ok": 1,
+        "code": 0,
+        "codeName": "OK",
+        "detail": "OK count=1 frames=480 stride=1920 checks=497 warnings=0",
+        "warnings": [],
+        "checks": 497
+      },
+      "expectedMatch": true,
+      "dllMatch": true,
+      "pass": true
+    },
+    {
+      "name": "normal_mixed_beds_objects",
+      "expect": "ok",
+      "python": {
+        "ok": 1,
+        "code": 0,
+        "codeName": "OK",
+        "detail": "OK count=6 frames=480 stride=1920 checks=2941 warnings=0",
+        "warnings": []
+      },
+      "dll": {
+        "ok": 1,
+        "code": 0,
+        "codeName": "OK",
+        "detail": "OK count=6 frames=480 stride=1920 checks=2941 warnings=0",
+        "warnings": [],
+        "checks": 2941
+      },
+      "expectedMatch": true,
+      "dllMatch": true,
+      "pass": true
+    },
+    {
+      "name": "normal_gain_out_of_range_warn",
+      "expect": "ok",
+      "python": {
+        "ok": 1,
+        "code": 0,
+        "codeName": "OK",
+        "detail": "OK count=2 frames=480 stride=1920 checks=985 warnings=2",
+        "warnings": [
+          "gain[0]=8.5 outside [0,8]",
+          "gain[1]=8.5 outside [0,8]"
+        ]
+      },
+      "dll": {
+        "ok": 1,
+        "code": 0,
+        "codeName": "OK",
+        "detail": "OK count=2 frames=480 stride=1920 checks=985 warnings=2",
+        "warnings": [
+          "gain[0]=8.5 outside [0,8]",
+          "gain[1]=8.5 outside [0,8]"
+        ],
+        "checks": 985
+      },
+      "expectedMatch": true,
+      "dllMatch": true,
+      "pass": true
+    },
+    {
+      "name": "normal_unknown_flag_warn",
+      "expect": "ok",
+      "python": {
+        "ok": 1,
+        "code": 0,
+        "codeName": "OK",
+        "detail": "OK count=1 frames=480 stride=1920 checks=497 warnings=1",
+        "warnings": [
+          "flags[0]=0x2 has reserved bits"
+        ]
+      },
+      "dll": {
+        "ok": 1,
+        "code": 0,
+        "codeName": "OK",
+        "detail": "OK count=1 frames=480 stride=1920 checks=497 warnings=1",
+        "warnings": [
+          "flags[0]=0x2 has reserved bits"
+        ],
+        "checks": 497
+      },
+      "expectedMatch": true,
+      "dllMatch": true,
+      "pass": true
+    },
+    {
+      "name": "normal_short_16f_warn",
+      "expect": "ok",
+      "python": {
+        "ok": 1,
+        "code": 0,
+        "codeName": "OK",
+        "detail": "OK count=4 frames=16 stride=64 checks=105 warnings=1",
+        "warnings": [
+          "frames=16 (production expects 480)"
+        ]
+      },
+      "dll": {
+        "ok": 1,
+        "code": 0,
+        "codeName": "OK",
+        "detail": "OK count=4 frames=16 stride=64 checks=105 warnings=1",
+        "warnings": [
+          "frames=16 (production expects 480)"
+        ],
+        "checks": 105
+      },
+      "expectedMatch": true,
+      "dllMatch": true,
+      "pass": true
+    },
+    {
+      "name": "bad_count_zero",
+      "expect": "reject:2",
+      "python": {
+        "ok": 0,
+        "code": 2,
+        "codeName": "E_COUNT",
+        "detail": "count 0 outside [1,160]",
+        "warnings": []
+      },
+      "dll": {
+        "ok": 0,
+        "code": 2,
+        "codeName": "E_COUNT",
+        "detail": "count 0 outside [1,160]",
+        "warnings": [],
+        "checks": 1
+      },
+      "expectedMatch": true,
+      "dllMatch": true,
+      "pass": true
+    },
+    {
+      "name": "bad_count_161",
+      "expect": "reject:2",
+      "python": {
+        "ok": 0,
+        "code": 2,
+        "codeName": "E_COUNT",
+        "detail": "count 161 outside [1,160]",
+        "warnings": []
+      },
+      "dll": {
+        "ok": 0,
+        "code": 2,
+        "codeName": "E_COUNT",
+        "detail": "count 161 outside [1,160]",
+        "warnings": [],
+        "checks": 1
+      },
+      "expectedMatch": true,
+      "dllMatch": true,
+      "pass": true
+    },
+    {
+      "name": "bad_property_frames_mismatch",
+      "expect": "reject:7",
+      "python": {
+        "ok": 0,
+        "code": 7,
+        "codeName": "E_PROP_FRAMES",
+        "detail": "property[0].frames 240 != block frames 480",
+        "warnings": []
+      },
+      "dll": {
+        "ok": 0,
+        "code": 7,
+        "codeName": "E_PROP_FRAMES",
+        "detail": "property[0].frames 240 != block frames 480",
+        "warnings": [],
+        "checks": 7
+      },
+      "expectedMatch": true,
+      "dllMatch": true,
+      "pass": true
+    },
+    {
+      "name": "bad_stride_misaligned",
+      "expect": "reject:4",
+      "python": {
+        "ok": 0,
+        "code": 4,
+        "codeName": "E_STRIDE",
+        "detail": "stride 66 outside [4,16384] or not 4-byte aligned",
+        "warnings": []
+      },
+      "dll": {
+        "ok": 0,
+        "code": 4,
+        "codeName": "E_STRIDE",
+        "detail": "stride 66 outside [4,16384] or not 4-byte aligned",
+        "warnings": [],
+        "checks": 3
+      },
+      "expectedMatch": true,
+      "dllMatch": true,
+      "pass": true
+    },
+    {
+      "name": "bad_xyz_nan",
+      "expect": "reject:9",
+      "python": {
+        "ok": 0,
+        "code": 9,
+        "codeName": "E_XYZ",
+        "detail": "property[0].xyz[0] is not finite",
+        "warnings": []
+      },
+      "dll": {
+        "ok": 0,
+        "code": 9,
+        "codeName": "E_XYZ",
+        "detail": "property[0].xyz[0] is not finite",
+        "warnings": [],
+        "checks": 10
+      },
+      "expectedMatch": true,
+      "dllMatch": true,
+      "pass": true
+    },
+    {
+      "name": "bad_pcm_nan",
+      "expect": "reject:11",
+      "python": {
+        "ok": 0,
+        "code": 11,
+        "codeName": "E_PCM",
+        "detail": "pcm f32 at byte 12 is not finite",
+        "warnings": []
+      },
+      "dll": {
+        "ok": 0,
+        "code": 11,
+        "codeName": "E_PCM",
+        "detail": "pcm f32 at byte 12 is not finite",
+        "warnings": [],
+        "checks": 18
+      },
+      "expectedMatch": true,
+      "dllMatch": true,
+      "pass": true
+    },
+    {
+      "name": "bad_sequence_jump",
+      "expect": "reject:13",
+      "python": {
+        "ok": 0,
+        "code": 13,
+        "codeName": "E_SEQ",
+        "detail": "sequence 7 is not prev(5)+1",
+        "warnings": []
+      },
+      "dll": {
+        "ok": 0,
+        "code": 13,
+        "codeName": "E_SEQ",
+        "detail": "sequence 7 is not prev(5)+1",
+        "warnings": [],
+        "checks": 31
+      },
+      "expectedMatch": true,
+      "dllMatch": true,
+      "pass": true
+    },
+    {
+      "name": "bad_qpc_backwards",
+      "expect": "reject:14",
+      "python": {
+        "ok": 0,
+        "code": 14,
+        "codeName": "E_QPC",
+        "detail": "captureQpcNs 1000000 moved backwards from 2000000",
+        "warnings": []
+      },
+      "dll": {
+        "ok": 0,
+        "code": 14,
+        "codeName": "E_QPC",
+        "detail": "captureQpcNs 1000000 moved backwards from 2000000",
+        "warnings": [],
+        "checks": 32
+      },
+      "expectedMatch": true,
+      "dllMatch": true,
+      "pass": true
+    },
+    {
+      "name": "bad_duplicate_bed",
+      "expect": "reject:12",
+      "python": {
+        "ok": 0,
+        "code": 12,
+        "codeName": "E_DUP_BED",
+        "detail": "duplicate bed type 0x2 at property[1]",
+        "warnings": []
+      },
+      "dll": {
+        "ok": 0,
+        "code": 12,
+        "codeName": "E_DUP_BED",
+        "detail": "duplicate bed type 0x2 at property[1]",
+        "warnings": [],
+        "checks": 24
+      },
+      "expectedMatch": true,
+      "dllMatch": true,
+      "pass": true
+    },
+    {
+      "name": "bad_payload_truncated",
+      "expect": "reject:6",
+      "python": {
+        "ok": 0,
+        "code": 6,
+        "codeName": "E_PAYLOAD",
+        "detail": "pcm payload 0 != count(1)*frames(16)*4",
+        "warnings": []
+      },
+      "dll": {
+        "ok": 0,
+        "code": 6,
+        "codeName": "E_PAYLOAD",
+        "detail": "pcm payload 0 != count(1)*frames(16)*4",
+        "warnings": [],
+        "checks": 6
+      },
+      "expectedMatch": true,
+      "dllMatch": true,
+      "pass": true
+    },
+    {
+      "name": "bad_illegal_type",
+      "expect": "reject:8",
+      "python": {
+        "ok": 0,
+        "code": 8,
+        "codeName": "E_TYPE",
+        "detail": "property[0].type 0x80000000 invalid",
+        "warnings": []
+      },
+      "dll": {
+        "ok": 0,
+        "code": 8,
+        "codeName": "E_TYPE",
+        "detail": "property[0].type 0x80000000 is neither dynamic(1) nor bed power-of-two 2..4096",
+        "warnings": [],
+        "checks": 8
+      },
+      "expectedMatch": true,
+      "dllMatch": true,
+      "pass": true
+    },
+    {
+      "name": "bad_stride_out_of_range",
+      "expect": "reject:4",
+      "python": {
+        "ok": 0,
+        "code": 4,
+        "codeName": "E_STRIDE",
+        "detail": "stride 16385 outside [4,16384] or not 4-byte aligned",
+        "warnings": []
+      },
+      "dll": {
+        "ok": 0,
+        "code": 4,
+        "codeName": "E_STRIDE",
+        "detail": "stride 16385 outside [4,16384] or not 4-byte aligned",
+        "warnings": [],
+        "checks": 3
+      },
+      "expectedMatch": true,
+      "dllMatch": true,
+      "pass": true
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "passed": 11,
+  "total": 11,
+  "failed": [],
+  "gate": {
+    "cases": 19,
+    "passed": 19,
+    "failed": 0
+  },
+  "crosscheck": {
+    "cases": 19,
+    "passed": 19,
+    "failed": 0,
+    "dllMismatches": 0
+  },
+  "bench": {
+    "iterations": 5000,
+    "count": 160,
+    "frames": 480,
+    "elapsedMs": 131.0,
+    "blocksPerSecond": 38168,
+    "usPerBlock": 26.2
+  },
+  "rawSlot": {
+    "valid": {
+      "ok": 1,
+      "code": 0,
+      "detail": "OK count=2 frames=16 stride=64 checks=55 warnings=1",
+      "warnings": [
+        "frames=16 (production expects 480)"
+      ]
+    },
+    "truncated": {
+      "ok": 0,
+      "code": 6,
+      "detail": "pcm payload 96 != count(2)*frames(16)*4",
+      "warnings": []
+    },
+    "notReady": {
+      "ok": 0,
+      "code": 15,
+      "detail": "slot ready=0 (expected 1)",
+      "warnings": []
+    }
+  }
+}
