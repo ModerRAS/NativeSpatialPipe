@@ -3,8 +3,8 @@
 | 项 | 值 |
 |---|---|
 | 分支 | feat/hook-validate-pe-identity |
-| 基于 | origin/main @ e5de1ae（worktree: scratch/lead/nsp-branches/wt2-peid） |
-| 提交 | 6bbdc6e（feat(hook-validation): add pe-build-identity PE build + Microsoft Authenticode gate） |
+| 基于 | alpha-dev @ 1679ed7（worktree: scratch/lead/nsp-branches/wt2-peid） |
+| 提交 | 3ecc8d2 feat(hook-validation): add pe-build-identity PE build + Microsoft Authenticode gate |
 | 日期 | 2026-11-15 |
 | 方法 | pe-build-identity（PE 构建身份 + 微软 Authenticode 签名门） |
 | 测试 | strict 策略 8/8；identity-only 对照 8/8 |
