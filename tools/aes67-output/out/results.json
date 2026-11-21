@@ -1,0 +1,227 @@
+{
+  "branch": "feat/aes67-network-output",
+  "generated": "2026-11-15T01:24:07+0800",
+  "exe": "C:\\WorkSpace\\Claw\\scratch\\lead\\nsp-branches\\wt6-aes67\\build\\aes67-output\\aes67-send.exe",
+  "config": {
+    "layout": "7.1.4",
+    "channels": 12,
+    "framesPerPacket": 48,
+    "ptimeMs": 1.0,
+    "payloadType": 96,
+    "toneHz": 1000.0,
+    "level": 0.5,
+    "seconds": 2.0
+  },
+  "loopback": {
+    "packets": 2010,
+    "expected_packets": 2000,
+    "first_seq": 0,
+    "last_seq": 2009,
+    "lost": 0,
+    "out_of_order": 0,
+    "ssrc": 1314082870,
+    "payload_bytes": 3473280,
+    "channel_peaks": [
+      0.041667,
+      0.083333,
+      0.125,
+      0.166667,
+      0.208333,
+      0.25,
+      0.291667,
+      0.333333,
+      0.375,
+      0.416667,
+      0.458333,
+      0.5
+    ],
+    "zero_crossings_per_second": 1990.05,
+    "silent_packets": 10,
+    "duration_s": 2.01,
+    "arrival_span_s": 2.009,
+    "measured_packets_per_second": 999.98,
+    "nominal_packets_per_second": 1000.0,
+    "nominal_payload_kbps": 13824.0
+  },
+  "senderStats": {
+    "dest": "127.0.0.1",
+    "port": 54693,
+    "layout": "7.1.4",
+    "channels": 12,
+    "payloadType": 96,
+    "framesPerPacket": 48,
+    "ptimeMs": 1.0,
+    "ssrc": 1314082870,
+    "ssrcHex": "0x4E535036",
+    "packets": 2010,
+    "framesSent": 96480,
+    "framesSubmitted": 96000,
+    "bytesSent": 3497400,
+    "payloadBytes": 3473280,
+    "silentPackets": 10,
+    "ringDroppedFrames": 0,
+    "sendErrors": 0,
+    "lateTicks": 0,
+    "elapsedMs": 2250,
+    "bitrateKbps": 12435.2,
+    "payloadKbps": 12349.4
+  },
+  "sdp": {
+    "path": "C:\\WorkSpace\\Claw\\scratch\\lead\\nsp-branches\\wt6-aes67\\tools\\aes67-output\\out\\aes67-test.sdp",
+    "bytes": 362
+  },
+  "multicast": {
+    "status": "PASS",
+    "detail": "packets=1010 expected~1000 port=58924",
+    "port": 58924,
+    "packets": 1010
+  },
+  "checks": [
+    {
+      "case": "sender:exit-code",
+      "status": "PASS",
+      "detail": "exit=0 port=54693"
+    },
+    {
+      "case": "loopback:packets",
+      "status": "PASS",
+      "detail": "received=2010 expected=2000 (100.5%)"
+    },
+    {
+      "case": "rtp:header",
+      "status": "PASS",
+      "detail": "v=2,p=0,x=0,cc=0,m=0,pt=96"
+    },
+    {
+      "case": "rtp:ssrc-stable",
+      "status": "PASS",
+      "detail": "ssrc=0x4E535036"
+    },
+    {
+      "case": "rtp:seq-continuity",
+      "status": "PASS",
+      "detail": "lost=0 out_of_order=0 first=0 last=2009"
+    },
+    {
+      "case": "rtp:timestamp-step",
+      "status": "PASS",
+      "detail": "deltas=[48] expected=48"
+    },
+    {
+      "case": "rtp:payload-length",
+      "status": "PASS",
+      "detail": "expect 1728 bytes per packet"
+    },
+    {
+      "case": "l24:channel-ramp-order",
+      "status": "PASS",
+      "detail": "peaks[0]=0.0417 peaks[last]=0.5000 expected_ramp=['0.042', '0.500']"
+    },
+    {
+      "case": "l24:tone-zcr",
+      "status": "PASS",
+      "detail": "zcr=1990.0/s expected=2000.0/s (ch0, 2.010s)"
+    },
+    {
+      "case": "l24:tone-slope",
+      "status": "PASS",
+      "detail": "max_adjacent_diff=0.005439 limit=0.005724"
+    },
+    {
+      "case": "l24:no-midstream-silence",
+      "status": "PASS",
+      "detail": "silent_packets=10 prefix/suffix-only (first_audio=0 last_audio=1999 of 2010) midstream=[]"
+    },
+    {
+      "case": "stream:arrival-pacing",
+      "status": "PASS",
+      "detail": "arrival_span=2.009s media_duration=2.010s rate=1000.0 pkt/s (nominal 1000)"
+    },
+    {
+      "case": "sdp-file-exists",
+      "status": "PASS",
+      "detail": "C:\\WorkSpace\\Claw\\scratch\\lead\\nsp-branches\\wt6-aes67\\tools\\aes67-output\\out\\aes67-test.sdp"
+    },
+    {
+      "case": "sdp:v=0",
+      "status": "PASS",
+      "detail": "present"
+    },
+    {
+      "case": "sdp:m=audio",
+      "status": "PASS",
+      "detail": "present"
+    },
+    {
+      "case": "sdp:RTP/AVP 96",
+      "status": "PASS",
+      "detail": "present"
+    },
+    {
+      "case": "sdp:a=rtpmap:96 L24/48000/12",
+      "status": "PASS",
+      "detail": "present"
+    },
+    {
+      "case": "sdp:a=ptime:1",
+      "status": "PASS",
+      "detail": "present"
+    },
+    {
+      "case": "sdp:a=sendonly",
+      "status": "PASS",
+      "detail": "present"
+    },
+    {
+      "case": "sdp:a=mediaclk:direct=0",
+      "status": "PASS",
+      "detail": "present"
+    },
+    {
+      "case": "sdp:c=unicast",
+      "status": "PASS",
+      "detail": "c=IN IP4 127.0.0.1"
+    },
+    {
+      "case": "sdp:ts-refclk",
+      "status": "PASS",
+      "detail": "a=ts-refclk:localmac=02-4E-53-50-00-01"
+    },
+    {
+      "case": "sdp:channel-order",
+      "status": "PASS",
+      "detail": "a=fmtp:96 channel-order=SMPTE2110.(71,4)"
+    },
+    {
+      "case": "sdp:channel-labels",
+      "status": "PASS",
+      "detail": "a=comment:channel-labels=L,R,C,LFE,Ls,Rs,Lrs,Rrs,Ltf,Rtf,Ltr,Rtr"
+    },
+    {
+      "case": "sdp:layout-comment",
+      "status": "PASS",
+      "detail": "a=comment:layout=7.1.4"
+    },
+    {
+      "case": "sender:no-underrun",
+      "status": "PASS",
+      "detail": "silentPackets=10 (prefix/suffix harness slack) ringDropped=0 sendErrors=0 lateTicks=0"
+    },
+    {
+      "case": "sender:pacing",
+      "status": "PASS",
+      "detail": "stats elapsedMs=2250 target=2000 (includes teardown; arrival span is authoritative)"
+    },
+    {
+      "case": "multicast:239.69.1.1",
+      "status": "PASS",
+      "detail": "packets=1010 expected~1000 port=58924"
+    }
+  ],
+  "summary": {
+    "passed": 28,
+    "failed": 0,
+    "skipped": 0
+  },
+  "elapsedSeconds": 5.61
+}
