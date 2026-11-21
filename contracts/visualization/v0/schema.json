@@ -654,14 +654,6 @@
           },
           "minItems": 0,
           "maxItems": 256
-        },
-        "pcmUpmixedBed": {
-          "type": "array",
-          "items": {
-            "$ref": "#/$defs/channel"
-          },
-          "minItems": 8,
-          "maxItems": 8
         }
       },
       "required": [
@@ -728,8 +720,7 @@
             "nsp-layout712",
             "nsp-layout716",
             "nsp-layout914",
-            "nsp-layout916",
-            "nsp-layout20"
+            "nsp-layout916"
           ]
         },
         "coordinateSystem": {
@@ -813,7 +804,7 @@
             ],
             "additionalProperties": false
           },
-          "minItems": 2,
+          "minItems": 7,
           "maxItems": 16
         }
       },
@@ -914,7 +905,7 @@
               },
               "maxChannels": {
                 "enum": [
-                  2,
+                  7,
                   8,
                   10,
                   12,
@@ -1236,7 +1227,7 @@
             ],
             "additionalProperties": false
           },
-          "minItems": 2,
+          "minItems": 7,
           "maxItems": 16
         }
       },
