@@ -310,10 +310,14 @@ pub fn checkTarget(pid: u32) !u64 {
     // compiled profile, and the hook checks the live prologue before patching.
     // LNL profile: public PDB RVA 0x31930 / primary vtable 0x9f4f8,
     // validated by notebook-joc-live-008 (no capture faults or drops).
+    // Legacy profile retargeted to the FLP01 build: audiodg 10.0.26100.10068
+    // (string 26100.9949), target RVA 0x32c40 / primary vtable 0x9e4e8,
+    // full-file SHA-256 below. The LNL profile above keeps its layout.
     var accepted = false;
     for ([_][]const u8{
         "3dd24fe6faf0b56f99d5b00f24687b5f3b3e76e15b219e23f0963114a0dce9a5",
         "4b5981cf6bdfac2f7be0c3314fb1eb12f6075083f11316c6cc15c63b697aeae7",
+        "e55b5365056273c133954ca7c44b8d4f1c3139a4b3fa766a94ffe58c2621a8b3",
     }) |profile| {
         const approved = try std.fmt.hexToBytes(&digest, profile);
         accepted = accepted or std.mem.eql(u8, &hash, approved);

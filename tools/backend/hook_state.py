@@ -53,7 +53,7 @@ def preflight():
             raise RuntimeError('Missing runtime dependency: '+str(path))
     import os
     image = Path(os.environ['SystemRoot'])/'System32/audiodg.exe'
-    if hashlib.sha256(image.read_bytes()).hexdigest() != '3dd24fe6faf0b56f99d5b00f24687b5f3b3e76e15b219e23f0963114a0dce9a5':
+    if hashlib.sha256(image.read_bytes()).hexdigest() != 'e55b5365056273c133954ca7c44b8d4f1c3139a4b3fa766a94ffe58c2621a8b3':
         raise RuntimeError('Audio target build mismatch')
     return dict(pid=pid, created=created)
 

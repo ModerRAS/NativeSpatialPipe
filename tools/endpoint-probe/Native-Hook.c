@@ -67,7 +67,7 @@ __declspec(dllexport) DWORD WINAPI nsp_hook_start(HookConfig *c){
  HMODULE image=GetModuleHandleW(c->fixture?L"nsp_fixture.dll":NULL);
  wchar_t image_path[1024];if(!image||!GetModuleFileNameW(image,image_path,1024)){result=fail(c,4);goto done;}
  if(!c->fixture){const wchar_t *name=wcsrchr(image_path,L'\\');if(!name||_wcsicmp(name+1,L"audiodg.exe")){result=fail(c,5);goto done;}}
- void *address=c->fixture?(void*)GetProcAddress(image,"boundary"):(char*)image+0x31930;
+ void *address=c->fixture?(void*)GetProcAddress(image,"boundary"):(char*)image+0x32c40;
  const unsigned char prologue[]={0x48,0x89,0x5c,0x24,0x08,0x48,0x89,0x6c,0x24,0x10,0x48,0x89,0x74,0x24,0x18,0x57};
  if(!address||(!c->fixture&&memcmp(address,prologue,sizeof(prologue)))){result=fail(c,6);goto done;}
  if(target&&target!=address){result=fail(c,7);goto done;}
@@ -77,7 +77,8 @@ __declspec(dllexport) DWORD WINAPI nsp_hook_start(HookConfig *c){
  Open open=(Open)GetProcAddress(send_dll,"nsp_link_open");close_link=(Close)GetProcAddress(send_dll,"nsp_link_close");void *publish=(void*)GetProcAddress(send_dll,"nsp_link_send");
  if(!create||!packet||!stop_capture||!report_capture||!destroy_capture||!open||!close_link||!publish){result=fail(c,9);goto cleanup;}
  link=open(c->mapping,c->event,0);if(!link){result=fail(c,10);goto cleanup;}
- ctx=create((char*)image+0x9f4f8,(char*)image+0xa2d58,publish,link,c->budget);if(!ctx){result=fail(c,11);goto cleanup;}
+ /* Real audiodg 10.0.26100.10068 (string 26100.9949) primary/secondary vtables; fixture has its own layout. */
+ ctx=c->fixture?create((char*)image+0x9f4f8,(char*)image+0x9f4f8,publish,link,c->budget):create((char*)image+0x9e4e8,(char*)image+0xa1c20,publish,link,c->budget);if(!ctx){result=fail(c,11);goto cleanup;}
  if(!target){
   MH_STATUS status=MH_Initialize();if(status!=MH_OK){result=fail(c,100+(DWORD)status);goto cleanup;}
   memcpy(before,address,32);status=MH_CreateHook(address,detour,(void**)&original);

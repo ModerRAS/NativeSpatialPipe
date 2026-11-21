@@ -306,7 +306,8 @@ pub fn checkTarget(pid: u32) !u64 {
     var hash: [32]u8 = undefined;
     std.crypto.hash.sha2.Sha256.hash(image, &hash, .{});
     var digest: [32]u8 = undefined;
-    const approved = try std.fmt.hexToBytes(&digest, "3dd24fe6faf0b56f99d5b00f24687b5f3b3e76e15b219e23f0963114a0dce9a5");
+    // Pinned to the FLP01 audiodg build 10.0.26100.10068 (was 3dd24fe6 for 26100.9444).
+    const approved = try std.fmt.hexToBytes(&digest, "e55b5365056273c133954ca7c44b8d4f1c3139a4b3fa766a94ffe58c2621a8b3");
     if (!std.mem.eql(u8, &hash, approved)) return error.TargetBuildMismatch;
     return (try processIdentity(pid)) orelse error.TargetExited;
 }
