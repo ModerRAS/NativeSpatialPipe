@@ -99,9 +99,13 @@ a=comment:channel-labels=L,R,C,LFE,Ls,Rs,Lrs,Rrs,Ltf,Rtf,Ltr,Rtr
   comes from `contracts/output-layouts.json`.
 * `4.1.2` (code 412) is an **NSP extension**: SMPTE defines no such token and
   ROAR has no 4.1.2 loudspeaker layout. The bridge renders ROAR 5.1.2 and
-  publishes only the subset the contract declares in `map`
-  (`L,R,Ls,Rs,Ltf,Rtf,LFE`; center is dropped, LFE is published last).
-  Its `SMPTE2110.(41,2)` token follows the same (bed,height) spelling and is
+  publishes `L,R,Ls,Rs,Ltf,Rtf,LFE` in the contract's `map` order, so the
+  center is **downmixed** rather than dropped: `downmix` folds ROAR center into
+  L and R at -3 dB per channel (gain 0.7071, equal-energy split), and LFE is
+  published last untouched. Folded channels are clamped to [-1,1] because a
+  correlated full-scale L/R + center sum can exceed 0 dBFS; the native pipeline
+  report exposes `downmixClipped` so a limited stream is observable. Its
+  `SMPTE2110.(41,2)` token follows the same (bed,height) spelling and is
   equally non-normative.
 
 ## 5. PTP dependency (explicit)
